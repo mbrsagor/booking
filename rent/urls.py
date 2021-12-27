@@ -20,4 +20,6 @@ urlpatterns = [
     path('users-delete/<pk>/', user_view.UserDeleteView.as_view(), name='use_delete'),
     # Booking
     path('new-booking/', booking_view.NewBookingView.as_view(), name='new_booking'),
+    path('all-booking/', booking_view.AllBookingView.as_view(), name='all_booking'),
+    path('booking-delete/<pk>/', booking_view.DeleteBookingView.as_view(), name='booking_delete'),
 ]

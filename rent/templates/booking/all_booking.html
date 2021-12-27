@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-12 grid-margin">
             <div class="card">
-                {% if booking %}
+                {% if all_booking %}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead>
@@ -26,7 +26,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for obj in booking %}
+                            {% for obj in all_booking %}
                                 <tr>
                                     <td>{{ obj.customer.username }}</td>
                                     <td>{{ obj.rent_name.name }}</td>
@@ -50,7 +50,7 @@
                     {% else %}
                     <div class="card-body text-center">
                         <div class="card-header">
-                            <h4 class="card-title">No New Booking...</h4>
+                            <h4 class="card-title">No Booking yet...</h4>
                         </div>
                     </div>
                 {% endif %}
