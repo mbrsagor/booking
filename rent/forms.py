@@ -1,5 +1,6 @@
-from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea
-from .models import Location, Rent
+from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea, EmailInput, \
+    PasswordInput
+from .models import Location, Rent, User
 
 
 class LocationForm(ModelForm):
@@ -44,4 +45,22 @@ class RentForm(ModelForm):
             'gallery_image2': FileInput(attrs={'class': 'imageUpload', 'id': 'imageUpload2'}),
             'gallery_image3': FileInput(attrs={'class': 'imageUpload', 'id': 'imageUpload3'}),
             'gallery_image4': FileInput(attrs={'class': 'imageUpload', 'id': 'imageUpload4'}),
+        }
+
+
+class UserUpdateForm(ModelForm):
+    class Meta:
+        model = User
+        exclude = ('date_joined',)
+        fields = (
+            '__all__'
+        )
+        widgets = {
+            'username': TextInput(attrs={'class': 'form-control', 'id': 'name'}),
+            'email': EmailInput(attrs={'class': 'form-control', 'id': 'email'}),
+            'first_name': TextInput(attrs={'class': 'form-control', 'id': 'first_name'}),
+            'last_name': TextInput(attrs={'class': 'form-control', 'id': 'last_name'}),
+            'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number'}),
+            'role': Select(attrs={'class': 'form-control', 'id': 'role'}),
+            'password': PasswordInput(attrs={'class': 'form-control', 'id': 'password'}),
         }

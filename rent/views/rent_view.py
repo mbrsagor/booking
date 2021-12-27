@@ -1,4 +1,6 @@
-from django.views.generic import ListView, CreateView, UpdateView, DateDetailView, DeleteView
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 
 from rent.models import Rent
@@ -27,10 +29,15 @@ class RentUpdateView(SuccessMessageMixin, UpdateView):
     success_url = '/rent/'
 
 
-class RentDetailsView(DateDetailView):
+class RentDetailsView(DetailView):
     model = Rent
     template_name = 'rent/rent_details.html'
     context_object_name = 'rent'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy("dashboard"))
+        return super(RentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
 class RentDeleteView(SuccessMessageMixin, DeleteView):

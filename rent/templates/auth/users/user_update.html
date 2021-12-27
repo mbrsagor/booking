@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} User Update || Booking {% endblock %}
+
+
+{% block content %}
+
+    {% include 'location/pageTitle.html' %}
+    {% include 'common/message.html' %}
+
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.errors }}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="name">Enter valid username</label>
+                                    {{ form.username }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="first_name">Enter your first name</label>
+                                    {{ form.first_name }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="first_name">Enter your last name</label>
+                                    {{ form.last_name }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Enter valid email address</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name">Enter your phone number</label>
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name">Select user role</label>
+                            {{ form.role }}
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name">Change Password</label>
+                            {{ form.password }}
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2">Submit</button>
+                        <a href="{% url 'use_list' %}" class="btn btn-light">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

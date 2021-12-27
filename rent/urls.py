@@ -1,5 +1,5 @@
 from django.urls import path
-from rent.views import location_view, rent_view
+from rent.views import location_view, rent_view, user_view
 
 urlpatterns = [
     # Location
@@ -14,5 +14,8 @@ urlpatterns = [
     path('rent-update/<pk>/', rent_view.RentUpdateView.as_view(), name='rent_update'),
     path('rent-detail/<pk>/', rent_view.RentDetailsView.as_view(), name='rent_details'),
     path('rent-delete/<pk>/', rent_view.RentDeleteView.as_view(), name='rent_delete'),
-
+    # User
+    path('users/', user_view.UserListView.as_view(), name='use_list'),
+    path('user-update/<pk>/', user_view.UserUpdateView.as_view(), name='use_update'),
+    path('users-delete/<pk>/', user_view.UserDeleteView.as_view(), name='use_delete'),
 ]
