@@ -31,3 +31,18 @@ class STATUS(IntEnum):
     @classmethod
     def get_status(cls):
         return [(key.value, key.name) for key in cls]
+
+
+class PAYMENT(IntEnum):
+    BANK = 0
+    PAYPAL = 1
+    MASTERCARD = 2
+    BKASH = 3
+    NOGOD = 4
+    UPAY = 5
+    CASH = 6
+    DUE = 7
+
+    @classmethod
+    def select_payment(cls):
+        return [(key.value, key.name) for key in cls]

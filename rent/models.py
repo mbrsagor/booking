@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from .utils import TYPES, ROLE, STATUS
+from .utils import TYPES, ROLE, STATUS, PAYMENT
 
 
 class BaseEntity(models.Model):
@@ -69,6 +69,8 @@ class Booking(BaseEntity):
     address = models.TextField()
     status = models.IntegerField(choices=STATUS.get_status(), default=STATUS.PENDING.value)
     phone_number = models.CharField(max_length=14, blank=True, null=True)
+    transaction_id = models.CharField(max_length=30, blank=True, null=True)
+    payment_type = models.IntegerField(choices=PAYMENT.select_payment(), default=PAYMENT.DUE.value)
     booking_date = models.DateField()
     checkout_date = models.DateField()
 
@@ -78,7 +80,3 @@ class Booking(BaseEntity):
     @property
     def total_day(self):
         return self.booking_date - self.checkout_date
-
-
-class CheckOut(Booking):
-    pass

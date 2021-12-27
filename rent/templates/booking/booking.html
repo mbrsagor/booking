@@ -29,6 +29,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Select payment options.</label>
+                                    {{ form.payment_type }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Enter transaction ID</label>
+                                    {{ form.transaction_id }}
+                                </div>
+                            </div>
+                        </div>
                         {% if request.user.is_superuser %}
                             <div class="form-group">
                                 <label for="status">Select Status</label>

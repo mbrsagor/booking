@@ -75,7 +75,9 @@ class BookingForm(ModelForm):
         widgets = {
             'rent_name': Select(attrs={'class': 'form-control', 'id': 'rent_name'}),
             'status': Select(attrs={'class': 'form-control', 'id': 'status'}),
+            'payment_type': Select(attrs={'class': 'form-control', 'id': 'payment_type'}),
             'address': Textarea(attrs={'class': 'form-control', 'id': 'address'}),
+            'transaction_id': TextInput(attrs={'class': 'form-control', 'id': 'transaction_id'}),
             'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number'}),
             'booking_date': DateInput(attrs={'class': 'form-control', 'id': 'booking_date', 'type': 'date'}),
             'checkout_date': DateInput(attrs={'class': 'form-control', 'id': 'booking_date', 'type': 'date'}),
