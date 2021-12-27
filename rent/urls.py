@@ -3,7 +3,7 @@ from rent.views import location_view, rent_view, user_view
 
 urlpatterns = [
     # Location
-    path('', location_view.Dashboard.as_view(), name='dashboard'),
+    path('dashboard/', location_view.Dashboard.as_view(), name='dashboard'),
     path('location/', location_view.LocationListView.as_view(), name='location_listview'),
     path('location-create/', location_view.LocationCreateView.as_view(), name='location_create'),
     path('location-update/<pk>/', location_view.LocationUpdateView.as_view(), name='location_update'),
