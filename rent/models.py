@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from .utils import TYPES, ROLE
+from .utils import TYPES, ROLE, STATUS
 
 
 class BaseEntity(models.Model):
@@ -67,6 +67,7 @@ class Booking(BaseEntity):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookingCustomer')
     rent_name = models.ForeignKey(Rent, on_delete=models.CASCADE, related_name='orderRent')
     address = models.TextField()
+    status = models.IntegerField(choices=STATUS.get_status(), default=STATUS.PENDING.value)
     phone_number = models.CharField(max_length=14, blank=True, null=True)
     booking_date = models.DateField()
     checkout_date = models.DateField()

@@ -1,6 +1,5 @@
-from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea, EmailInput, \
-    PasswordInput
-from .models import Location, Rent, User
+from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea, EmailInput
+from .models import Location, Rent, User, Booking
 
 
 class LocationForm(ModelForm):
@@ -51,7 +50,7 @@ class RentForm(ModelForm):
 class UserUpdateForm(ModelForm):
     class Meta:
         model = User
-        exclude = ('date_joined',)
+        exclude = ('date_joined', 'password',)
         fields = (
             '__all__'
         )
@@ -62,5 +61,4 @@ class UserUpdateForm(ModelForm):
             'last_name': TextInput(attrs={'class': 'form-control', 'id': 'last_name'}),
             'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number'}),
             'role': Select(attrs={'class': 'form-control', 'id': 'role'}),
-            'password': PasswordInput(attrs={'class': 'form-control', 'id': 'password'}),
         }

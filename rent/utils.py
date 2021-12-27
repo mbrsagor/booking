@@ -20,3 +20,14 @@ class ROLE(IntEnum):
     @classmethod
     def select_role(cls):
         return [(key.value, key.name) for key in cls]
+
+
+class STATUS(IntEnum):
+    PENDING = 0
+    FAILED = 1
+    PROGRESS = 2
+    DONE = 3
+
+    @classmethod
+    def get_status(cls):
+        return [(key.value, key.name) for key in cls]
