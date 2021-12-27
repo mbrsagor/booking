@@ -22,7 +22,7 @@ class Location(BaseEntity):
     name = models.CharField(max_length=150)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='location', blank=True, null=True)
     image = models.ImageField(upload_to='location/%y/%m', null=True, blank=True)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['-id']
