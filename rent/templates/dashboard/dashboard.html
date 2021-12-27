@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Dashboard || Booking {% endblock %}
+
+
+{% block content %}
+
+    {% include 'dashboard/pageTitle.html' %}
+    {% include 'dashboard/cardCounter.html' %}
+    {% include 'dashboard/cardChart.html' %}
+    {% include 'dashboard/cardInvoice.html' %}
+    {% include 'dashboard/cardAverage.html' %}
+    {% include 'dashboard/cardEvent.html' %}
+
+{% endblock %}
