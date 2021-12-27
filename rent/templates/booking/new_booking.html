@@ -37,7 +37,7 @@
                                     <td>{{ obj.booking_date }}</td>
                                     <td>{{ obj.phone_number }}</td>
                                     <td class="text-center">
-                                        <a title="Update the booking" href="{% url 'location_update' obj.pk %}"><i
+                                        <a title="Booking confirm" href="{% url 'booking_confirm' obj.pk %}"><i
                                                 class="mdi mdi-pencil"></i></a>
                                         <a title="Delete the booking" href="{% url 'booking_delete' obj.pk %}"><i
                                                 class="mdi mdi-trash-can"></i></a>

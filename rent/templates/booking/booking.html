@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} New Booking || Booking {% endblock %}
+
+
+{% block content %}
+
+    {% include 'location/pageTitle.html' %}
+    {% include 'common/message.html' %}
+
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Select rent which you want.</label>
+                                    {{ form.rent_name }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="phone_number">Enter booking phone number</label>
+                                    {{ form.phone_number }}
+                                </div>
+                            </div>
+                        </div>
+                        {% if request.user.is_superuser %}
+                            <div class="form-group">
+                                <label for="status">Select Status</label>
+                                {{ form.status }}
+                            </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="status">Select Booking Date</label>
+                                    {{ form.booking_date }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="status">Select Checkout Date</label>
+                                    {{ form.checkout_date }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Enter your address</label>
+                            {{ form.address }}
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2">Submit</button>
+                        <a href="{% url 'all_booking' %}" class="btn btn-light">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

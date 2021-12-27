@@ -46,7 +46,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="{% url 'booking' %}">
                 <i class="menu-icon typcn typcn-shopping-bag"></i>
                 <span class="menu-title">Booking</span>
             </a>
@@ -101,6 +101,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/">Profile Update</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'my_booking_history' %}">My Booking History</a>
                     </li>
                 </ul>
             </div>

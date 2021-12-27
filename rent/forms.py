@@ -1,4 +1,5 @@
-from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea, EmailInput
+from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea, EmailInput, \
+    DateInput
 from .models import Location, Rent, User, Booking
 
 
@@ -61,4 +62,21 @@ class UserUpdateForm(ModelForm):
             'last_name': TextInput(attrs={'class': 'form-control', 'id': 'last_name'}),
             'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number'}),
             'role': Select(attrs={'class': 'form-control', 'id': 'role'}),
+        }
+
+
+class BookingForm(ModelForm):
+    class Meta:
+        model = Booking
+        exclude = ('customer', 'customer_id',)
+        fields = (
+            '__all__'
+        )
+        widgets = {
+            'rent_name': Select(attrs={'class': 'form-control', 'id': 'rent_name'}),
+            'status': Select(attrs={'class': 'form-control', 'id': 'status'}),
+            'address': Textarea(attrs={'class': 'form-control', 'id': 'address'}),
+            'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number'}),
+            'booking_date': DateInput(attrs={'class': 'form-control', 'id': 'booking_date', 'type': 'date'}),
+            'checkout_date': DateInput(attrs={'class': 'form-control', 'id': 'booking_date', 'type': 'date'}),
         }

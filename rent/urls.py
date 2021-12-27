@@ -19,7 +19,10 @@ urlpatterns = [
     path('user-update/<pk>/', user_view.UserUpdateView.as_view(), name='use_update'),
     path('users-delete/<pk>/', user_view.UserDeleteView.as_view(), name='use_delete'),
     # Booking
+    path('booking/', booking_view.AddNewBookingView.as_view(), name='booking'),
     path('new-booking/', booking_view.NewBookingView.as_view(), name='new_booking'),
     path('all-booking/', booking_view.AllBookingView.as_view(), name='all_booking'),
+    path('my-booking-history/', booking_view.MyBookingHistory.as_view(), name='my_booking_history'),
+    path('booking-confirm/<pk>/', booking_view.UpdateBookingView.as_view(), name='booking_confirm'),
     path('booking-delete/<pk>/', booking_view.DeleteBookingView.as_view(), name='booking_delete'),
 ]
