@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Create Rent || Booking {% endblock %}
+
+
+{% block content %}
+
+    {% include 'rent/pageTitle.html' %}
+    {% include 'common/message.html' %}
+
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <form class="forms-sample" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h2>{{ form.errors }}</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Enter valid rent name</label>
+                                    {{ form.name }}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="bed_room">How many bed room</label>
+                                    {{ form.bed_room }}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="bed_room">How many bath room</label>
+                                    {{ form.bath_room }}
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="types">Rent Type</label>
+                                    {{ form.types }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="rent_location">Rent Location</label>
+                                    {{ form.rent_location }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="price">Price</label>
+                                    {{ form.price }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="discount_price">Discount Price</label>
+                                    {{ form.discount_price }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="is_ac">The rent has Available right now?</label>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label">
+                                            {{ form.is_available }} Available</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="descriptions">Description</label>
+                                    {{ form.descriptions }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="is_ac">The rent has AC availability right now?</label>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label">
+                                            {{ form.is_ac }} AC Available</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="is_ac">The rent has WYFI availability?</label>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label">
+                                            {{ form.is_wifi }} WYFI Available</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="is_ac">The rent has TV availability?</label>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label">
+                                            {{ form.is_tv }} TV Available</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="is_ac">The rent has breakfast availability?</label>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label">
+                                            {{ form.breakfast }} Breakfast Available</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="is_ac">The rent has lunch availability?</label>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label">
+                                            {{ form.is_lunch }} Lunch Available</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="is_ac">The rent has dinner availability?</label>
+                                    <div class="form-check form-check-flat">
+                                        <label class="form-check-label">
+                                            {{ form.is_dinner }} Dinner Available</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="image">Upload Image</label>
+                                    {{ form.image }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="image">Gallery Image 1</label>
+                                    {{ form.gallery_image }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="image">Gallery Image 2</label>
+                                    {{ form.gallery_image2 }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="image">Gallery Image 3</label>
+                                    {{ form.gallery_image3 }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="image">Gallery Image 4</label>
+                                    {{ form.gallery_image4 }}
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success mr-2">Submit</button>
+                        <a href="{% url 'rent_listview' %}" class="btn btn-light">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

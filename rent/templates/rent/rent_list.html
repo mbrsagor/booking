@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Rent List || Booking {% endblock %}
+
+
+{% block content %}
+
+    {% include 'rent/pageTitle.html' %}
+    {% include 'common/message.html' %}
+
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="card">
+                {% if rent %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name Name</th>
+                                <th>Bed Room</th>
+                                <th>Status</th>
+                                <th>Created Date</th>
+                                <th>Price</th>
+                                <th>Location</th>
+                                <th>Type</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for obj in rent %}
+                                <tr>
+                                    <td>{{ obj.name }}</td>
+                                    <td>{{ obj.bed_room }} Bed Room</td>
+                                    <td>{% if obj.is_available %}
+                                        <span class="bg-success text-light p-1">Available</span> {% else %}
+                                        <span class="bg-danger text-light p-1">Not Available</span> {% endif %}</td>
+                                    <td>{{ obj.created_at }}</td>
+                                    <td>{{ obj.price }}</td>
+                                    <td>{{ obj.rent_location }}</td>
+                                    <td>{% if obj.types == 0 %} Flat {% else %} Room {% endif %}</td>
+                                    <td class="text-center">
+                                        <a title="Update the location" href="{% url 'rent_update' obj.pk %}"><i
+                                                class="mdi mdi-pencil"></i></a>
+                                        <a title="Details the location" href="{% url 'rent_details' obj.pk %}"><i
+                                                class="mdi mdi-eye"></i></a>
+                                        <a title="Delete the location" href="{% url 'rent_delete' obj.pk %}"><i
+                                                class="mdi mdi-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <h3 class="card-title p-3">No Rent found</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

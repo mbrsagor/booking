@@ -1,8 +1,8 @@
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 
-from .models import Location
-from .forms import LocationForm
+from rent.models import Location
+from rent.forms import LocationForm
 
 
 class Dashboard(TemplateView):
@@ -33,6 +33,6 @@ class LocationUpdateView(SuccessMessageMixin, UpdateView):
 
 class LocationDeleteView(SuccessMessageMixin, DeleteView):
     model = Location
-    success_message = 'Location has been deleted'
+    success_message = 'The location has been deleted'
     template_name = 'location/location_delete.html'
     success_url = '/location/'
