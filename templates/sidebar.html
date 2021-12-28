@@ -10,8 +10,9 @@
                 </div>
                 <div class="text-wrapper">
                     <p class="profile-name">{{ request.user.username }}</p>
-                    <p class="designation">{% if obj.role == 0 %} Customer {% elif obj.role == 1 %}
-                        Manager {% elif obj.role == 2 %} Account {% else %} Admin {% endif %}</p>
+                    <p class="designation">{% if request.user.role == 0 %} Customer {% elif request.user.role == 1 %}
+                        Manager {% elif request.user.role == 2 %} Account {% elif request.user.role == 3 %}
+                        Admin {% endif %}</p>
                 </div>
             </a>
         </li>
@@ -22,72 +23,77 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="menu-icon typcn typcn-coffee"></i>
-                <span class="menu-title">Management</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'location_create' %}">Add Location</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'location_listview' %}">Location List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create_rent' %}">Create Rent</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'rent_listview' %}">Rent List</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
+        {% if request.user.is_superuser or request.user.role == 1 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                   aria-controls="ui-basic">
+                    <i class="menu-icon typcn typcn-coffee"></i>
+                    <span class="menu-title">Management</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-basic">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'location_create' %}">Add Location</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'location_listview' %}">Location List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create_rent' %}">Create Rent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'rent_listview' %}">Rent List</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        {% endif %}
         <li class="nav-item">
             <a class="nav-link" href="{% url 'booking' %}">
                 <i class="menu-icon typcn typcn-shopping-bag"></i>
                 <span class="menu-title">Booking</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="menu-icon typcn typcn-document-add"></i>
-                <span class="menu-title">Manage Users</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'use_list' %}"> Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"> Customers</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#order" aria-expanded="false" aria-controls="auth">
-                <i class="menu-icon typcn typcn-document-add"></i>
-                <span class="menu-title">Booking Request</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="order">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'new_booking' %}">New Booking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'all_booking' %}">All Booking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'all_booking' %}">Filter Booking</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
+        {% if request.user.is_superuser or request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                    <i class="menu-icon typcn typcn-document-add"></i>
+                    <span class="menu-title">Manage Users</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="auth">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'use_list' %}"> Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"> Customers</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#order" aria-expanded="false" aria-controls="auth">
+                    <i class="menu-icon typcn typcn-document-add"></i>
+                    <span class="menu-title">Booking Request</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="order">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'new_booking' %}">New Booking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'all_booking' %}">All Booking</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'all_booking' %}">Filter Booking</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        {% endif %}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="auth">
                 <i class="menu-icon typcn typcn-document-add"></i>
