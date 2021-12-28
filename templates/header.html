@@ -13,6 +13,7 @@
             <li class="nav-item font-weight-semibold d-none d-lg-block">Help : support@booking.info +88017000000
             </li>
         </ul>
+        {% if request.user.is_authenticated %}
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
@@ -34,5 +35,6 @@
                 data-toggle="offcanvas">
             <span class="mdi mdi-menu"></span>
         </button>
+        {% endif %}
     </div>
 </nav>
