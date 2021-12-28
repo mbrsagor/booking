@@ -1,9 +1,9 @@
 from django.urls import path
-from rent.views import location_view, rent_view, user_view, booking_view, auth_view
+from rent.views import location_view, rent_view, user_view, booking_view, auth_view, dashboard_view
 
 urlpatterns = [
+    path('dashboard/', dashboard_view.DashboardView.as_view(), name='dashboard'),
     # Location
-    path('dashboard/', location_view.Dashboard.as_view(), name='dashboard'),
     path('location/', location_view.LocationListView.as_view(), name='location_listview'),
     path('location-create/', location_view.LocationCreateView.as_view(), name='location_create'),
     path('location-update/<pk>/', location_view.LocationUpdateView.as_view(), name='location_update'),

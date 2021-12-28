@@ -1,10 +1,13 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from rent.models import Booking
 from rent.forms import BookingForm
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AddNewBookingView(SuccessMessageMixin, CreateView):
     model = Booking
     form_class = BookingForm
@@ -18,6 +21,7 @@ class AddNewBookingView(SuccessMessageMixin, CreateView):
         return super(AddNewBookingView, self).form_valid(form)
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class MyBookingHistory(ListView):
     model = Booking
     context_object_name = 'my_booking'
@@ -27,6 +31,7 @@ class MyBookingHistory(ListView):
         return Booking.objects.filter(customer=self.request.user)
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class NewBookingView(ListView):
     model = Booking
     context_object_name = 'booking'
@@ -36,12 +41,14 @@ class NewBookingView(ListView):
         return Booking.objects.filter(status=0)
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AllBookingView(ListView):
     model = Booking
     context_object_name = 'all_booking'
     template_name = 'booking/all_booking.html'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class UpdateBookingView(SuccessMessageMixin, UpdateView):
     model = Booking
     form_class = BookingForm
@@ -50,6 +57,7 @@ class UpdateBookingView(SuccessMessageMixin, UpdateView):
     success_url = '/all-booking/'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class DeleteBookingView(SuccessMessageMixin, DeleteView):
     model = Booking
     success_message = 'The booking has been deleted'

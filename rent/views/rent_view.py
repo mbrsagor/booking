@@ -7,6 +7,7 @@ from rent.models import Rent
 from rent.forms import RentForm
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class RentListView(ListView):
     model = Rent
     template_name = 'rent/rent_list.html'

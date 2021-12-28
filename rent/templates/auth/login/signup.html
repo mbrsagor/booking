@@ -3,9 +3,9 @@
 {% block title %} User Registration || Booking {% endblock %}
 
 {% block content %}
+
     {% if form.errors %}
-        <p class="alert alert-danger" role="alert">Your username and password didn't match.Please try again.
-        </p>
+        <p class="alert alert-danger" role="alert">{{ form.errors }}</p>
     {% endif %}
 
     <form method="post">
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <div class="input-group">
-               {{ form.phone_number }}
+                {{ form.phone_number }}
                 <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <div class="input-group">
-               {{ form.email }}
+                {{ form.email }}
                 <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
             <div class="input-group">
-               {{ form.password1 }}
+                {{ form.password1 }}
                 <div class="input-group-append">
                         <span class="input-group-text">
                           <i class="mdi mdi-check-circle-outline"></i>

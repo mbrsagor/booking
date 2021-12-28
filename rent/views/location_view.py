@@ -1,20 +1,20 @@
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from rent.models import Location
 from rent.forms import LocationForm
 
 
-class Dashboard(TemplateView):
-    template_name = 'dashboard/dashboard.html'
-
-
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class LocationListView(ListView):
     model = Location
     template_name = 'location/location.html'
     context_object_name = 'location'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class LocationCreateView(SuccessMessageMixin, CreateView):
     model = Location
     form_class = LocationForm
@@ -23,6 +23,7 @@ class LocationCreateView(SuccessMessageMixin, CreateView):
     success_url = '/location-create/'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class LocationUpdateView(SuccessMessageMixin, UpdateView):
     model = Location
     form_class = LocationForm
@@ -31,6 +32,7 @@ class LocationUpdateView(SuccessMessageMixin, UpdateView):
     success_url = '/location/'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class LocationDeleteView(SuccessMessageMixin, DeleteView):
     model = Location
     success_message = 'The location has been deleted'
