@@ -37,7 +37,7 @@
                                  alt="Profile image">
                             <p class="mb-1 mt-3 font-weight-semibold">{{ request.user.username }}</p>
                             <p class="font-weight-light text-muted mb-1">{{ request.user.email }}</p>
-                            <a href="/">Logout</a>
+                            <a href="{% url 'logout' %}">Logout</a>
                         </div>
                     </div>
                 </li>

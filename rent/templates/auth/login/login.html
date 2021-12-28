@@ -1,0 +1,50 @@
+{% extends 'auth.html' %}
+
+{% block title %} User Login || Booking {% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <p class="alert alert-danger" role="alert">Your username and password didn't match.Please try again.
+        </p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="label">Username</label>
+            <div class="input-group">
+                {{ form.username }}
+                <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="label">Password</label>
+            <div class="input-group">
+                {{ form.password }}
+                <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="mdi mdi-check-circle-outline"></i>
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary submit-btn btn-block">Login</button>
+        </div>
+        <div class="form-group d-flex justify-content-between">
+            <div class="form-check form-check-flat mt-0">
+                <label class="form-check-label">
+                    {{ form.remember_me }} Keep me signed in </label>
+            </div>
+            <a href="#" class="text-small forgot-password text-black">Forgot Password</a>
+        </div>
+        <div class="text-block text-center my-3">
+            <span class="text-small font-weight-semibold">Not a member ?</span>
+            <a href="{% url 'registration' %}" class="text-black text-small">Create new account</a>
+        </div>
+    </form>
+
+{% endblock %}

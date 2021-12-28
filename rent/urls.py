@@ -1,5 +1,5 @@
 from django.urls import path
-from rent.views import location_view, rent_view, user_view, booking_view
+from rent.views import location_view, rent_view, user_view, booking_view, auth_view
 
 urlpatterns = [
     # Location
@@ -25,4 +25,8 @@ urlpatterns = [
     path('my-booking-history/', booking_view.MyBookingHistory.as_view(), name='my_booking_history'),
     path('booking-confirm/<pk>/', booking_view.UpdateBookingView.as_view(), name='booking_confirm'),
     path('booking-delete/<pk>/', booking_view.DeleteBookingView.as_view(), name='booking_delete'),
+    # Authentication
+    path('login/', auth_view.SignInView.as_view(), name='login'),
+    path('logout/', auth_view.Logout.as_view(), name='logout'),
+    path('registration/', auth_view.SingUpView.as_view(), name='registration'),
 ]

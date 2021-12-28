@@ -1,6 +1,45 @@
 from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea, EmailInput, \
-    DateInput
+    DateInput, CharField, PasswordInput, BooleanField
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
 from .models import Location, Rent, User, Booking
+
+
+class UserLoginForm(AuthenticationForm):
+    username = CharField(widget=TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Username', 'required': True,
+               'autofocus': True}))
+    password = CharField(
+        widget=PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Password', 'required': True}))
+    remember_me = BooleanField(required=False)
+
+
+class UserSignUpForm(UserCreationForm):
+    password1 = CharField(
+        widget=PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Password'}),
+    )
+    password2 = CharField(
+        widget=PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Confirm Password'}),
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'phone_number', 'email')
+        widgets = {
+            'username': TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
+            'phone_number': TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
+            'email': EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'})
+        }
+
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('username', 'phone_number')
 
 
 class LocationForm(ModelForm):
