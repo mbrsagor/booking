@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Online booking system || Booking</title>
+    {% include 'stylesheet.html' %}
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}"/>
+    <style type="text/css">
+        .bg_custom {
+            background: url("https://res.cloudinary.com/mbrsagor/image/upload/v1640713048/booking_bg_wzssss.jpg") no-repeat;
+            height: 100vh;
+            background-size: cover;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="container-scroller bg_custom pt-5">
+    <!-- partial:partials/_navbar.html -->
+    {% include 'header.html' %}
+
+    <div class="container mt-5">
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h4 class="card-title">Booking Your Rent</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="get">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search Rent"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="name" id="location" class="form-control">
+                                            <option value="Select">Select Location</option>
+                                            <option value="Rangpur">Cox Bazar</option>
+                                            <option value="Rangpur">Dhaka</option>
+                                            <option value="Rangpur">Rangpur</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Your Budget"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <select name="name" id="location" class="form-control">
+                                            <option value="Select">Select Rent</option>
+                                            <option value="Rangpur">Single Room</option>
+                                            <option value="Rangpur">Double Room</option>
+                                            <option value="Rangpur">Semi Dobule</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-success" type="submit">Search your favorite places</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- container-scroller -->
+{% include 'javascript.html' %}
+</body>
+</html>

@@ -2,6 +2,7 @@ from django.urls import path
 from rent.views import location_view, rent_view, user_view, booking_view, auth_view, dashboard_view
 
 urlpatterns = [
+    path('', dashboard_view.HomePageView.as_view(), name='home_page'),
     path('dashboard/', dashboard_view.DashboardView.as_view(), name='dashboard'),
     # Location
     path('location/', location_view.LocationListView.as_view(), name='location_listview'),
