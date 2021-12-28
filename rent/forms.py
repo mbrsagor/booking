@@ -3,7 +3,7 @@ from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput,
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import Location, Rent, User, Booking
+from .models import Location, Rent, User, Booking, Profile
 
 
 class UserLoginForm(AuthenticationForm):
@@ -33,6 +33,27 @@ class UserSignUpForm(UserCreationForm):
             'username': TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
             'phone_number': TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
             'email': EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'})
+        }
+
+
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = (
+            '__all__'
+        )
+        exclude = ('username', 'user_id')
+        widgets = {
+            'first_name': TextInput(attrs={'class': 'form-control', 'id': 'first_name'}),
+            'last_name': TextInput(attrs={'class': 'form-control', 'id': 'last_name'}),
+            'email': TextInput(attrs={'class': 'form-control', 'id': 'email'}),
+            'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number'}),
+            'address': TextInput(attrs={'class': 'form-control', 'id': 'address'}),
+            'gender': Select(attrs={'class': 'form-control', 'id': 'gender'}),
+            'marital_status': Select(attrs={'class': 'form-control', 'id': 'marital_status'}),
+            'date_of_birth': DateInput(attrs={'class': 'form-control', 'id': 'date_of_birth', 'type': 'date'}),
+            'nid_number': TextInput(attrs={'class': 'form-control', 'id': 'nid_number'}),
+            'profile_picture': FileInput(attrs={'class': 'file-upload-default', 'id': 'profile_picture'}),
         }
 
 
@@ -115,9 +136,14 @@ class BookingForm(ModelForm):
             'rent_name': Select(attrs={'class': 'form-control', 'id': 'rent_name'}),
             'status': Select(attrs={'class': 'form-control', 'id': 'status'}),
             'payment_type': Select(attrs={'class': 'form-control', 'id': 'payment_type'}),
-            'address': Textarea(attrs={'class': 'form-control', 'id': 'address'}),
-            'transaction_id': TextInput(attrs={'class': 'form-control', 'id': 'transaction_id'}),
-            'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number'}),
+            'address': TextInput(
+                attrs={'class': 'form-control', 'id': 'address', 'placeholder': 'Enter your valid address'}),
+            'booking_purpose': TextInput(attrs={'class': 'form-control', 'id': 'address',
+                                                'placeholder': 'What purpose do you want to booking?'}),
+            'transaction_id': TextInput(attrs={'class': 'form-control', 'id': 'transaction_id',
+                                               'placeholder': '#38fzs37sf747'}),
+            'phone_number': TextInput(attrs={'class': 'form-control', 'id': 'phone_number',
+                                             'placeholder': 'Which phone number management will contact you'}),
             'booking_date': DateInput(attrs={'class': 'form-control', 'id': 'booking_date', 'type': 'date'}),
             'checkout_date': DateInput(attrs={'class': 'form-control', 'id': 'booking_date', 'type': 'date'}),
         }

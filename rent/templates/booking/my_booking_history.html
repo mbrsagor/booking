@@ -22,7 +22,7 @@
                                 <th>Created Date</th>
                                 <th>Booking Date</th>
                                 <th>Phone Number</th>
-                                <th class="text-center">Actions</th>
+                                <th>Total Days</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -36,11 +36,8 @@
                                     <td>{{ obj.created_at }}</td>
                                     <td>{{ obj.booking_date }}</td>
                                     <td>{{ obj.phone_number }}</td>
-                                    <td class="text-center">
-                                        <a title="Booking Confirm" href="{% url 'booking_confirm' obj.pk %}"><i
-                                                class="mdi mdi-pencil"></i></a>
-                                        <a title="Delete the booking" href="{% url 'booking_delete' obj.pk %}"><i
-                                                class="mdi mdi-trash-can"></i></a>
+                                    <td>
+                                        {{ obj.total_day }}
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -18,6 +18,8 @@ urlpatterns = [
     path('users/', user_view.UserListView.as_view(), name='use_list'),
     path('user-update/<pk>/', user_view.UserUpdateView.as_view(), name='use_update'),
     path('users-delete/<pk>/', user_view.UserDeleteView.as_view(), name='use_delete'),
+    path('profile', auth_view.ProfileView.as_view(), name='profile'),
+    path('profile-update/<pk>/', auth_view.ProfileUpdateView.as_view(), name='profile_update'),
     # Booking
     path('booking/', booking_view.AddNewBookingView.as_view(), name='booking'),
     path('new-booking/', booking_view.NewBookingView.as_view(), name='new_booking'),

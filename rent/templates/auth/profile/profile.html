@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} My Profile || Booking {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="address">Email Address</label>
+                                        <input type="text" class="form-control" value="{{ request.user.email }}"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="address">My age</label>
+                                        <input type="text" class="form-control"
+                                               value="{{ profile_ctx.calculate_age }} Years"
+                                               disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="address">My Username</label>
+                                        <input type="text" class="form-control" value="{{ request.user.username }}"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="address">Phone Number</label>
+                                        <input type="text" class="form-control" value="{{ request.user.phone_number }}"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="address">Date of birth</label>
+                                        <input type="text" class="form-control" value="{{ profile_ctx.date_of_birth }}"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="address">Gender</label>
+                                        <input type="text" class="form-control"
+                                               value="{% if profile_ctx.gender == 0 %} Male {% elif profile_ctx.gender == 0 %} Female {% else %} Other {% endif %}"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="address">Marital Status</label>
+                                        <input type="text" class="form-control"
+                                               value="{% if profile_ctx.marital_status == 0 %} UNMARRIED {% else %} MARRIED {% endif %}"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="address">Joining Date</label>
+                                        <input type="text" class="form-control" value="{{ request.user.date_joined }}"
+                                               disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="address">My Address</label>
+                                <input type="text" class="form-control" value="{{ profile_ctx.address }}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <img width="150" height="150" style="border-radius: 50%" src="{{ profile_ctx.profile_picture.url }}" alt="{{ request.user.username }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

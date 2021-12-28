@@ -42,7 +42,7 @@ class ROLE(IntEnum):
 
 class STATUS(IntEnum):
     PENDING = 0
-    FAILED = 1
+    CANCEL = 1
     PROGRESS = 2
     DONE = 3
 

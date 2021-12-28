@@ -103,10 +103,10 @@
             <div class="collapse" id="settings">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">My Profile</a>
+                        <a class="nav-link" href="{% url 'profile' %}">My Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Profile Update</a>
+                        <a class="nav-link" href="{% url 'profile_update' request.user.profile.pk %}">Profile Update</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'my_booking_history' %}">My Booking History</a>

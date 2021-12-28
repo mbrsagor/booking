@@ -35,6 +35,10 @@ class Profile(BaseEntity):
         age = datetime.date.today() - self.date_of_birth
         return int(age.days / 365.25)
 
+    @property
+    def make_full_name(self):
+        return f"{self.username.first_name} {self.username.last_name}"
+
 
 class Location(BaseEntity):
     name = models.CharField(max_length=150)
@@ -85,9 +89,10 @@ class Booking(BaseEntity):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookingCustomer')
     rent_name = models.ForeignKey(Rent, on_delete=models.CASCADE, related_name='orderRent')
     address = models.TextField()
-    status = models.IntegerField(choices=STATUS.get_status(), default=STATUS.PENDING.value)
+    status = models.IntegerField(choices=STATUS.get_status(), default=STATUS.PENDING.value, blank=True, null=True)
     phone_number = models.CharField(max_length=14, blank=True, null=True)
     transaction_id = models.CharField(max_length=30, blank=True, null=True)
+    booking_purpose = models.CharField(max_length=150, blank=True, null=True)
     payment_type = models.IntegerField(choices=PAYMENT.select_payment(), default=PAYMENT.DUE.value)
     booking_date = models.DateField()
     checkout_date = models.DateField()
@@ -97,4 +102,4 @@ class Booking(BaseEntity):
 
     @property
     def total_day(self):
-        return self.booking_date - self.checkout_date
+        return self.checkout_date - self.booking_date
