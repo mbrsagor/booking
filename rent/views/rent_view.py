@@ -2,6 +2,8 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from rent.models import Rent
 from rent.forms import RentForm
@@ -14,6 +16,7 @@ class RentListView(ListView):
     context_object_name = 'rent'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class CreateRentView(SuccessMessageMixin, CreateView):
     model = Rent
     form_class = RentForm
@@ -22,6 +25,7 @@ class CreateRentView(SuccessMessageMixin, CreateView):
     success_url = '/create-rent/'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class RentUpdateView(SuccessMessageMixin, UpdateView):
     model = Rent
     form_class = RentForm
@@ -30,6 +34,7 @@ class RentUpdateView(SuccessMessageMixin, UpdateView):
     success_url = '/rent/'
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class RentDetailsView(DetailView):
     model = Rent
     template_name = 'rent/rent_details.html'
@@ -41,6 +46,7 @@ class RentDetailsView(DetailView):
         return super(RentDetailsView, self).dispatch(request, *args, **kwargs)
 
 
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class RentDeleteView(SuccessMessageMixin, DeleteView):
     model = Rent
     success_message = 'The rent has been deleted'

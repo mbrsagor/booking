@@ -3,7 +3,6 @@
 
 {% block title %} New Booking || Booking {% endblock %}
 
-
 {% block content %}
 
     {% include 'location/pageTitle.html' %}
@@ -68,7 +67,7 @@
                             {{ form.address }}
                         </div>
                         <button type="submit" class="btn btn-success mr-2">Submit</button>
-                        <a href="{% url 'all_booking' %}" class="btn btn-light">Cancel</a>
+                        <a href="{% url 'my_booking_history' %}" class="btn btn-light">Cancel</a>
                     </form>
                 </div>
             </div>
