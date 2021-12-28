@@ -1,10 +1,13 @@
+from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views import View
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from rent.models import Booking
 from rent.forms import BookingForm
+from rent.filters import BookingFilter
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -63,3 +66,14 @@ class DeleteBookingView(SuccessMessageMixin, DeleteView):
     success_message = 'The booking has been deleted'
     template_name = 'booking/delete_booking.html'
     success_url = '/all-booking/'
+
+
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
+class BookingFilerListView(View):
+
+    def get(self, request):
+        booking_list = Booking.objects.all()
+        booking_filer = BookingFilter(request.GET, queryset=booking_list)
+        template = 'booking/booking_filter.html'
+        ctx = {'result': booking_filer}
+        return render(request, template, ctx)

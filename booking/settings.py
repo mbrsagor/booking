@@ -50,7 +50,11 @@ INTERNAL_APPS = [
     'rent',
 ]
 
-INSTALLED_APPS = DEFAULT_APPS + INTERNAL_APPS
+THIRD_PARTY_APPS = [
+    'django_filters'
+]
+
+INSTALLED_APPS = DEFAULT_APPS + INTERNAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

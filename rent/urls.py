@@ -25,6 +25,7 @@ urlpatterns = [
     path('new-booking/', booking_view.NewBookingView.as_view(), name='new_booking'),
     path('all-booking/', booking_view.AllBookingView.as_view(), name='all_booking'),
     path('my-booking-history/', booking_view.MyBookingHistory.as_view(), name='my_booking_history'),
+    path('search-booking/', booking_view.BookingFilerListView.as_view(), name='search_booking'),
     path('booking-confirm/<pk>/', booking_view.UpdateBookingView.as_view(), name='booking_confirm'),
     path('booking-delete/<pk>/', booking_view.DeleteBookingView.as_view(), name='booking_delete'),
     # Authentication
