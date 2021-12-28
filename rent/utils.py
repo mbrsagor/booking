@@ -1,13 +1,31 @@
 from enum import IntEnum
 
 
-# Type of product
 class TYPES(IntEnum):
     FLAT = 0
     ROOM = 1
 
     @classmethod
     def select_types(cls):
+        return [(key.value, key.name) for key in cls]
+
+
+class SEX(IntEnum):
+    MALE = 0
+    FEMALE = 1
+    OTHERS = 2
+
+    @classmethod
+    def select_sex(cls):
+        return [(key.value, key.name) for key in cls]
+
+
+class MARITAL(IntEnum):
+    UNMARRIED = 0
+    MARRIED = 1
+
+    @classmethod
+    def select_status(cls):
         return [(key.value, key.name) for key in cls]
 
 

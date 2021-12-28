@@ -1,7 +1,8 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from .utils import TYPES, ROLE, STATUS, PAYMENT
+from .utils import TYPES, ROLE, STATUS, PAYMENT, SEX, MARITAL
 
 
 class BaseEntity(models.Model):
@@ -16,6 +17,23 @@ class User(AbstractUser, BaseEntity):
 
     def __str__(self):
         return self.username
+
+
+class Profile(BaseEntity):
+    username = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    address = models.TextField(blank=True, null=True)
+    gender = models.IntegerField(choices=SEX.select_sex(), default=SEX.MALE.value)
+    date_of_birth = models.DateField(blank=True, null=True, default=None)
+    nid_number = models.IntegerField(default=123)
+    marital_status = models.IntegerField(choices=MARITAL.select_status(), default=MARITAL.UNMARRIED.value)
+    profile_picture = models.ImageField(upload_to='profile//%y/%m', blank=True, null=True)
+
+    def __str__(self):
+        return self.username.phone_number
+
+    def calculate_age(self):
+        age = datetime.date.today() - self.date_of_birth
+        return int(age.days / 365.25)
 
 
 class Location(BaseEntity):
