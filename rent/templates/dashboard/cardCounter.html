@@ -5,47 +5,51 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-2 col-md-6">
                         <div class="d-flex">
                             <div class="wrapper">
-                                <h3 class="mb-0 font-weight-semibold">32,451</h3>
+                                <h3 class="mb-0 font-weight-semibold">{{ booking.count }}</h3>
                                 <h5 class="mb-0 font-weight-medium text-primary">Total Booking</h5>
                             </div>
-                            <div class="wrapper my-auto ml-auto ml-lg-4">
-                                <canvas height="50" width="100" id="stats-line-graph-1"></canvas>
-                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                    <div class="col-lg-2 col-md-6 mt-md-0 mt-4">
                         <div class="d-flex">
                             <div class="wrapper">
-                                <h3 class="mb-0 font-weight-semibold">15,236</h3>
+                                <h3 class="mb-0 font-weight-semibold">{{ users.count }}</h3>
                                 <h5 class="mb-0 font-weight-medium text-primary">Total Customer</h5>
                             </div>
-                            <div class="wrapper my-auto ml-auto ml-lg-4">
-                                <canvas height="50" width="100" id="stats-line-graph-2"></canvas>
-                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                    <div class="col-lg-2 col-md-6 mt-md-0 mt-4">
                         <div class="d-flex">
                             <div class="wrapper">
-                                <h3 class="mb-0 font-weight-semibold">7,688</h3>
+                                <h3 class="mb-0 font-weight-semibold">{{ locations.count }}</h3>
                                 <h5 class="mb-0 font-weight-medium text-primary">Total Place</h5>
                             </div>
-                            <div class="wrapper my-auto ml-auto ml-lg-4">
-                                <canvas height="50" width="100" id="stats-line-graph-3"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mt-md-0 mt-4">
+                        <div class="d-flex">
+                            <div class="wrapper">
+                                <h3 class="mb-0 font-weight-semibold">{{ rents.count }}</h3>
+                                <h5 class="mb-0 font-weight-medium text-primary">Total Rent</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                    <div class="col-lg-2 col-md-6 mt-md-0 mt-4">
                         <div class="d-flex">
                             <div class="wrapper">
-                                <h3 class="mb-0 font-weight-semibold">1,553</h3>
-                                <h5 class="mb-0 font-weight-medium text-primary">Total Rent</h5>
+                                <h3 class="mb-0 font-weight-semibold">{{ cancel_booking.count }}</h3>
+                                <h5 class="mb-0 font-weight-medium text-primary">Cancel Booking</h5>
                             </div>
-                            <div class="wrapper my-auto ml-auto ml-lg-4">
-                                <canvas height="50" width="100" id="stats-line-graph-4"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mt-md-0 mt-4">
+                        <div class="d-flex">
+                            <div class="wrapper">
+                                <h3 class="mb-0 font-weight-semibold">{{ pending_booking.count }}</h3>
+                                <h5 class="mb-0 font-weight-medium text-primary">Pending Booking</h5>
                             </div>
                         </div>
                     </div>

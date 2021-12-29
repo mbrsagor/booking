@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import post_save
 
 from .utils import TYPES, ROLE, STATUS, PAYMENT, SEX, MARITAL
 
@@ -38,6 +39,14 @@ class Profile(BaseEntity):
     @property
     def make_full_name(self):
         return f"{self.username.first_name} {self.username.last_name}"
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        profile, created = Profile.objects.get_or_create(username=instance)
+
+
+post_save.connect(create_user_profile, sender=User)
 
 
 class Location(BaseEntity):

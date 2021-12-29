@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-title mb-0">Booking list</h4>
+                    <a href="{% url 'all_booking' %}"><small>Show All</small></a>
+                </div>
+                <p>List of all booking summery</p>
+                {% if booking %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Invoice ID</th>
+                                <th>Rent Name</th>
+                                <th>Customer</th>
+                                <th>Status</th>
+                                <th>Booking Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for obj in booking %}
+                                <tr>
+                                    <td>INV-87239</td>
+                                    <td>{{ obj.rent_name }}</td>
+                                    <td>{{ obj.customer }}</td>
+                                    <td>
+                                        {% if obj.status == 0 %}
+                                        Pending  {% elif obj.status == 1 %}
+                                       Failed {% elif obj.status == 2 %}  In progress {% else %}  Done {% endif %}
+                                    </td>
+                                    <td>{{ obj.booking_date }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
