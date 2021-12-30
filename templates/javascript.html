@@ -14,3 +14,31 @@
 <script src="{% static 'assets/js/demo_1/dashboard.js' %}"></script>
 <!-- End custom js for this page-->
 <script src="{% static 'assets/js/shared/jquery.cookie.js' %}" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script type="text/javascript">
+    var content = [];
+
+    $(".prompt").select2({
+        data: content,
+        // minimumInputLength: 2,
+        width: '100%',
+        multiple: true,
+        placeholder: "select rent",
+        // templateResult:formatState
+
+    });
+
+    function btn_handler() {
+        var names = $('.prompt').select2('data');
+
+        for (let name of names) {
+
+            console.log(name)
+            console.log(name.text)
+            console.log(name.email)
+
+            alert(`${name.text} - ${name.email}`)
+
+        }
+    }
+</script>

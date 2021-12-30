@@ -96,7 +96,7 @@ class Rent(BaseEntity):
 
 class Booking(BaseEntity):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookingCustomer')
-    rent_name = models.ForeignKey(Rent, on_delete=models.CASCADE, related_name='orderRent')
+    rent_name = models.ManyToManyField(Rent, related_name='orderRent')
     address = models.TextField()
     status = models.IntegerField(choices=STATUS.get_status(), default=STATUS.PENDING.value, blank=True, null=True)
     phone_number = models.CharField(max_length=14, blank=True, null=True)
