@@ -45,7 +45,16 @@
                     <p class="mb-0 text-muted">20 finished, 5 remaining</p>
                 </div>
                 <ul class="timeline">
-                    <li class="timeline-item">
+                    {% if booking_status %}
+                        {% for bookingin in booking_status %}
+                            <li class="timeline-item">
+                                <p class="timeline-content"><a href="#">Pending</a> assign you a task</p>
+                                <p class="event-time">{{ bookingin.id }}</p>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                    <!--
+                        <li class="timeline-item">
                         <p class="timeline-content"><a href="#">Ben Tossell</a> assign you a task</p>
                         <p class="event-time">Just now</p>
                     </li>
@@ -61,10 +70,7 @@
                         <p class="timeline-content"><a href="#">Ben Tossell</a> assign you a task</p>
                         <p class="event-time">Just now</p>
                     </li>
-                    <li class="timeline-item">
-                        <p class="timeline-content"><a href="#">Ben Tossell</a> assign you a task</p>
-                        <p class="event-time">Just now</p>
-                    </li>
+                    -->
                 </ul>
                 <a class="d-block mt-3" href="#">Show all</a>
             </div>
