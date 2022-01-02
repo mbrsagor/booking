@@ -9,6 +9,12 @@
         .rent_image img {
             width: 100%;
         }
+
+        .rent_gallery {
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50% !important;
+        }
     </style>
 
     <div class="container mt-5">
@@ -24,24 +30,64 @@
                                 <a href="{{ rent.image.url }}" data-lightbox="roadtrip">
                                     <img src="{{ rent.image.url }}" alt="{{ obj.name }}">
                                 </a>
-                                <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
-                                    {{ rent.gallery_image.url }}
-                                </a>
-                                <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
-                                    {{ rent.gallery_image.url }}
-                                </a>
-                                <a href="{{ rent.gallery_image1.url }}" data-lightbox="roadtrip">
-                                    {{ rent.gallery_image1.url }}
-                                </a>
-                                <a href="{{ rent.gallery_image2.url }}" data-lightbox="roadtrip">
-                                    {{ rent.gallery_image2.url }}
-                                </a>
-                                 <a href="{{ rent.gallery_image3.url }}" data-lightbox="roadtrip">
-                                    {{ rent.gallery_image3.url }}
-                                </a>
+                                {% if rent.gallery_image.url %}
+                                    <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
+                                        <img class="rent_gallery" src="{{ rent.gallery_image.url }}" alt="">
+                                    </a>
+                                {% endif %}
+                                {% if rent.gallery_image.url %}
+                                    <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
+                                        <img class="rent_gallery"
+                                             src="{{ rent.gallery_image.url }}" alt="">
+                                    </a>
+                                {% endif %}
+                                {% if rent.gallery_image1.url %}
+                                    <a href="{{ rent.gallery_image1.url }}" data-lightbox="roadtrip">
+                                        <img class="rent_gallery" src="{{ rent.gallery_image1.url }}" alt="">
+                                    </a>
+                                {% endif %}
+                                {% if rent.gallery_image2.url %}
+                                    <a href="{{ rent.gallery_image2.url }}" data-lightbox="roadtrip">
+                                        <img class="rent_gallery" src="{{ rent.gallery_image2.url }}" alt="">
+                                    </a>
+                                {% endif %}
+                                {% if rent.gallery_image3.url %}
+                                    <a href="{{ rent.gallery_image3.url }}" data-lightbox="roadtrip">
+                                        <img class="rent_gallery" src="{{ rent.gallery_image3.url }}" alt="">
+                                    </a>
+                                {% endif %}
                             </div>
                             <div class="col-md-5">
+                                <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Regular Price
+                                        <span class="badge badge-primary badge-pill">{{ rent.price }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Discount Price
+                                        <span class="badge badge-primary badge-pill">{{ rent.discount_price }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Location
+                                        <span>{{ rent.rent_location }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Rent Type
+                                        <span>{{ rent.types }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bed Rooms
+                                        <span>{{ rent.bed_room }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Bath Rooms
+                                        <span>{{ rent.bath_room }}</span>
+                                    </li>
 
+                                    <li class="list-group-item">
+                                        {{ rent.descriptions }}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

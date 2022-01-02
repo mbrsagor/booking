@@ -92,12 +92,6 @@ class RentForm(ModelForm):
             'rent_location': Select(attrs={'class': 'form-control', 'id': 'rent_location'}),
             'types': Select(attrs={'class': 'form-control', 'id': 'types'}),
             'is_available': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'is_available'}),
-            'is_ac': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'is_ac'}),
-            'is_wifi': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'is_wifi'}),
-            'is_tv': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'is_tv'}),
-            'breakfast': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'breakfast'}),
-            'is_lunch': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'is_lunch'}),
-            'is_dinner': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'is_dinner'}),
             'descriptions': Textarea(
                 attrs={'class': 'form-control', 'id': 'description', 'placeholder': 'Enter Description'}),
             'image': FileInput(attrs={'class': 'file', 'id': 'imageUpload'}),
