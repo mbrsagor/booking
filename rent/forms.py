@@ -104,7 +104,6 @@ class RentForm(ModelForm):
             'gallery_image': FileInput(attrs={'class': 'imageUpload', 'id': 'imageUpload'}),
             'gallery_image2': FileInput(attrs={'class': 'imageUpload', 'id': 'imageUpload2'}),
             'gallery_image3': FileInput(attrs={'class': 'imageUpload', 'id': 'imageUpload3'}),
-            'gallery_image4': FileInput(attrs={'class': 'imageUpload', 'id': 'imageUpload4'}),
         }
 
 

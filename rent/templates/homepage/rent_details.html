@@ -21,7 +21,24 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-7 rent_image">
-                                <img src="{{ rent.image.url }}" alt="{{ obj.name }}">
+                                <a href="{{ rent.image.url }}" data-lightbox="roadtrip">
+                                    <img src="{{ rent.image.url }}" alt="{{ obj.name }}">
+                                </a>
+                                <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
+                                    {{ rent.gallery_image.url }}
+                                </a>
+                                <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
+                                    {{ rent.gallery_image.url }}
+                                </a>
+                                <a href="{{ rent.gallery_image1.url }}" data-lightbox="roadtrip">
+                                    {{ rent.gallery_image1.url }}
+                                </a>
+                                <a href="{{ rent.gallery_image2.url }}" data-lightbox="roadtrip">
+                                    {{ rent.gallery_image2.url }}
+                                </a>
+                                 <a href="{{ rent.gallery_image3.url }}" data-lightbox="roadtrip">
+                                    {{ rent.gallery_image3.url }}
+                                </a>
                             </div>
                             <div class="col-md-5">
 

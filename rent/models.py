@@ -88,7 +88,6 @@ class Rent(BaseEntity):
     gallery_image = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)
     gallery_image2 = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)
     gallery_image3 = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)
-    gallery_image4 = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)
 
     def __str__(self):
         return self.name[:30]
