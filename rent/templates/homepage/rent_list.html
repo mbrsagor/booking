@@ -1,26 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Rent list page || Booking</title>
-    {% include 'stylesheet.html' %}
-    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}"/>
-    <style type="text/css">
-        .bg_custom {
-            background: url("https://res.cloudinary.com/mbrsagor/image/upload/v1640713048/booking_bg_wzssss.jpg") no-repeat;
-            height: 100vh;
-            background-size: cover;
-            color: #666666;
-        }
-    </style>
-</head>
-<body>
-<div class="container-scroller bg_custom pt-5">
-    <!-- partial:partials/_navbar.html -->
-    {% include 'header.html' %}
+{% extends 'front.html' %}
+
+
+{% block title %} Rent list page || Booking {% endblock %}
+
+{% block content %}
 
     <div class="container mt-5">
         <div class="row mt-5">
@@ -33,7 +16,7 @@
                         <ul class="list-group-item">
                             {% if rent %}
                                 {% for obj in rent %}
-                                    <li class="list-item">{{ obj.name }}</li>
+                                    <li class="list-group-item">{{ obj.name }}</li>
                                 {% endfor %}
                             {% endif %}
                         </ul>
@@ -43,8 +26,4 @@
         </div>
     </div>
 
-</div>
-<!-- container-scroller -->
-{% include 'javascript.html' %}
-</body>
-</html>
+{% endblock %}
