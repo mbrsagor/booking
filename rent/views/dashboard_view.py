@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -23,6 +23,13 @@ class RentListPageView(TemplateView):
         return context
 
     template_name = 'homepage/rent_list.html'
+
+
+class RentDetailsView(DetailView):
+    model = Rent
+    context_object_name = 'rent'
+
+    template_name = 'homepage/rent_details.html'
 
 
 class DashboardView(TemplateView):

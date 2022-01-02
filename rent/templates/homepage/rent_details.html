@@ -1,0 +1,36 @@
+{% extends 'front.html' %}
+
+
+{% block title %} {{ rent.name }} details || Booking {% endblock %}
+
+{% block content %}
+
+    <style type="text/css">
+        .rent_image img {
+            width: 100%;
+        }
+    </style>
+
+    <div class="container mt-5">
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">{{ rent.name }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-7 rent_image">
+                                <img src="{{ rent.image.url }}" alt="{{ obj.name }}">
+                            </div>
+                            <div class="col-md-5">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
