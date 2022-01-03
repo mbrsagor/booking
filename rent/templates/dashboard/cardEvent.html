@@ -39,11 +39,10 @@
                     {% if booking_status %}
                         {% for obj in booking_status %}
                             <li class="timeline-item">
-                                <p class="timeline-content"><a href="javascript:void(0);">Booking
-                                    Date: {{ obj.booking_date }}</a> {% if obj.status == 0 %}
+                                <p class="timeline-content"><a href="javascript:void(0);"> {{ obj.rent_name }}</a> {% if obj.status == 0 %}
                                     Pending  {% elif obj.status == 1 %}
                                     Failed {% elif obj.status == 2 %}  In progress {% else %}  Done {% endif %}</p>
-                                <p class="event-time">{{ obj.get_rents }} || </p>
+                                <p class="event-time">Booking Date: {{ obj.booking_date }}</p>
                                 <p class="event-time">Total Days:{{ obj.total_day }}</p>
                             </li>
                         {% endfor %}

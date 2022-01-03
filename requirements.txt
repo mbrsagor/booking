@@ -5,3 +5,5 @@ django-environ==0.8.1
 django-filter==21.1
 Pillow==8.4.0
 sqlparse==0.4.2
+psycopg2-binary==2.8.6
+pycodestyle==2.6.0

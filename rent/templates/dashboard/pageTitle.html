@@ -7,14 +7,14 @@
             <h4 class="page-title">Dashboard</h4>
             <div class="quick-link-wrapper w-100 d-md-flex flex-md-wrap">
                 <ul class="quick-links">
-                    <li><a href="#">ICE Market data</a></li>
-                    <li><a href="#">Own analysis</a></li>
-                    <li><a href="#">Historic market data</a></li>
+                    <li><a href="{% url 'profile_update' request.user.profile.pk %}">Update My Profile</a></li>
+                    <li><a href="{% url 'my_booking_history' %}">My all booking history</a></li>
+                    <li><a href="{% url 'home_page' %}">Search Rent</a></li>
                 </ul>
                 <ul class="quick-links ml-auto">
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Analytics</a></li>
-                    <li><a href="#">Watchlist</a></li>
+                    <li><a href="{% url 'rent_list' %}">List of rents</a></li>
+                    <li><a href="{% url 'booking' %}">Booking</a></li>
+                    <li><a href="">Change password</a></li>
                 </ul>
             </div>
         </div>
