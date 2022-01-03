@@ -40,8 +40,8 @@ class DashboardView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         booking = Booking.objects.all().order_by('-id')
-        cancel_booking = Booking.objects.filter(status=0)
-        pending_booking = Booking.objects.filter(status=1)
+        cancel_booking = Booking.objects.filter(status=1)
+        pending_booking = Booking.objects.filter(status=0)
         users = User.objects.all()
         locations = Location.objects.all()
         rents = Rent.objects.all()

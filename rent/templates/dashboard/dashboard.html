@@ -6,11 +6,13 @@
 
 {% block content %}
 
-    {% include 'dashboard/pageTitle.html' %}
-    {% include 'dashboard/cardCounter.html' %}
-    {% include 'dashboard/cardChart.html' %}
-    {% include 'dashboard/bookingCard.html' %}
-    {% include 'dashboard/cardAverage.html' %}
+    {% if request.user.is_superuser or request.user.role == 1 or request.user.role == 2 or request.user.role == 3 %}
+        {% include 'dashboard/pageTitle.html' %}
+        {% include 'dashboard/cardCounter.html' %}
+        {% include 'dashboard/cardAverage.html' %}
+        {% include 'dashboard/cardChart.html' %}
+        {% include 'dashboard/bookingCard.html' %}
+    {% endif %}
     {% include 'dashboard/cardEvent.html' %}
 
 {% endblock %}
