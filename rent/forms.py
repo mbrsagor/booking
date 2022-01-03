@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput, FileInput, Select, CheckboxInput, NumberInput, Textarea, EmailInput, \
-    DateInput, CharField, PasswordInput, BooleanField, SelectMultiple
+    DateInput, CharField, PasswordInput, BooleanField
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
@@ -126,7 +126,7 @@ class BookingForm(ModelForm):
             '__all__'
         )
         widgets = {
-            'rent_name': SelectMultiple(attrs={'class': 'prompt', 'id': 'rent_name'}),
+            'rent_name': Select(attrs={'class': 'form-control', 'id': 'rent_name'}),
             'status': Select(attrs={'class': 'form-control', 'id': 'status'}),
             'payment_type': Select(attrs={'class': 'form-control', 'id': 'payment_type'}),
             'address': TextInput(

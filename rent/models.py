@@ -90,7 +90,7 @@ class Rent(BaseEntity):
 
 class Booking(BaseEntity):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookingCustomer')
-    rent_name = models.ManyToManyField(Rent, related_name='orderRent')
+    rent_name = models.ForeignKey(Rent, on_delete=models.CASCADE, related_name='orderRent')
     address = models.TextField()
     status = models.IntegerField(choices=STATUS.get_status(), default=STATUS.PENDING.value, blank=True, null=True)
     phone_number = models.CharField(max_length=14, blank=True, null=True)
@@ -103,10 +103,10 @@ class Booking(BaseEntity):
     def __str__(self):
         return f"Customer: {self.customer.username} => Rent: {self.rent_name.name} => Booking Date: {self.booking_date}"
 
-    @property
-    def get_rents(self):
-        for rent in self.rent_name.all():
-            return rent.name
+    # @property
+    # def get_rents(self):
+    #     for rent in self.rent_name.all():
+    #         return rent.name
 
     @property
     def total_day(self):
