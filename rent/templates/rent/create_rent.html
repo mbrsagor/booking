@@ -72,32 +72,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="descriptions">Description</label>
-                                    {{ form.descriptions }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="is_ac">The rent has lunch availability?</label>
-                                    <div class="form-check form-check-flat">
-                                        <label class="form-check-label">
-                                            {{ form.is_lunch }} Lunch Available</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label for="is_ac">The rent has dinner availability?</label>
-                                    <div class="form-check form-check-flat">
-                                        <label class="form-check-label">
-                                            {{ form.is_dinner }} Dinner Available</label>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="image">Upload Image</label>
@@ -110,8 +84,6 @@
                                     {{ form.gallery_image }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="image">Gallery Image 2</label>
@@ -122,6 +94,14 @@
                                 <div class="form-group">
                                     <label for="image">Gallery Image 3</label>
                                     {{ form.gallery_image3 }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="descriptions">Description</label>
+                                    {{ form.descriptions }}
                                 </div>
                             </div>
                         </div>

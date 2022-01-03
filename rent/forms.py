@@ -119,6 +119,11 @@ class UserUpdateForm(ModelForm):
 
 
 class BookingForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(BookingForm, self).__init__(*args, **kwargs)
+        self.fields['rent_name'].queryset = Rent.objects.filter(is_available=True)
+
     class Meta:
         model = Booking
         exclude = ('customer', 'customer_id',)
