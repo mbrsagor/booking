@@ -80,6 +80,14 @@
                                         <span>{{ rent.bed_room }}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Status
+                                        {% if rent.is_available %}
+                                            <span class="bg-success text-light p-1">Available</span>
+                                        {% else %}
+                                            <span class="bg-danger text-light p-1">Not Available</span>
+                                        {% endif %}
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
                                         Bath Rooms
                                         <span>{{ rent.bath_room }}</span>
                                     </li>
