@@ -43,7 +43,8 @@
                                     Date: {{ obj.booking_date }}</a> {% if obj.status == 0 %}
                                     Pending  {% elif obj.status == 1 %}
                                     Failed {% elif obj.status == 2 %}  In progress {% else %}  Done {% endif %}</p>
-                                <p class="event-time">{{ obj.rent_name.name }}</p>
+                                <p class="event-time">{{ obj.get_rents }} || </p>
+                                <p class="event-time">Total Days:{{ obj.total_day }}</p>
                             </li>
                         {% endfor %}
                     {% endif %}

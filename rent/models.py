@@ -102,8 +102,10 @@ class Booking(BaseEntity):
     def __str__(self):
         return f"Customer: {self.customer.username} => Rent: {self.rent_name.name} => Booking Date: {self.booking_date}"
 
-    def __unicode__(self):
-        return u", ".join([a.name for a in self.rent_name.allI()])
+    @property
+    def get_rents(self):
+        for rent in self.rent_name.all():
+            return rent.name
 
     @property
     def total_day(self):
