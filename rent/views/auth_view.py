@@ -1,6 +1,8 @@
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login, logout
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import resolve_url
 from django.views import View
 from django.shortcuts import redirect
@@ -12,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from rent.forms import UserLoginForm, UserSignUpForm, ProfileUpdateForm
-from rent.models import Profile
+from rent.models import Profile, User
 
 
 class SignInView(LoginView):
@@ -76,3 +78,12 @@ class ProfileView(ListView):
 
     def get_queryset(self):
         return Profile.objects.get(username=self.request.user)
+
+
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
+class PasswordChange(SuccessMessageMixin, PasswordChangeView):
+    model = User
+    form_class = PasswordChangeForm
+    template_name = "auth/users/change_password.html"
+    success_message = "Password Changed Successfully."
+    success_url = reverse_lazy("change_password")
