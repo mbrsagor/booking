@@ -19,14 +19,16 @@
                                                disabled>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="address">My age</label>
-                                        <input type="text" class="form-control"
-                                               value="{{ profile_ctx.calculate_age }} Years"
-                                               disabled>
+                                {% if profile_ctx.calculate_age %}
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="address">My age</label>
+                                            <input type="text" class="form-control"
+                                                   value=" {{ profile_ctx.calculate_age }}Years"
+                                                   disabled>
+                                        </div>
                                     </div>
-                                </div>
+                                {% endif %}
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -81,7 +83,8 @@
                                 <input type="text" class="form-control" value="{{ profile_ctx.address }}" disabled>
                             </div>
                             <div class="form-group">
-                                <img width="150" height="150" style="border-radius: 50%" src="{{ profile_ctx.profile_picture.url }}" alt="{{ request.user.username }}">
+                                <img width="150" height="150" style="border-radius: 50%"
+                                     src="{{ profile_ctx.profile_picture.url }}" alt="{{ request.user.username }}">
                             </div>
                         </div>
                     </div>

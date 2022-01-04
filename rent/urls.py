@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from rent.views import location_view, rent_view, user_view, booking_view, auth_view, dashboard_view
 
 urlpatterns = [
@@ -22,7 +23,7 @@ urlpatterns = [
     path('users/', user_view.UserListView.as_view(), name='use_list'),
     path('user-update/<pk>/', user_view.UserUpdateView.as_view(), name='use_update'),
     path('users-delete/<pk>/', user_view.UserDeleteView.as_view(), name='use_delete'),
-    path('profile', auth_view.ProfileView.as_view(), name='profile'),
+    path('profile/', auth_view.ProfileView.as_view(), name='profile'),
     path('profile-update/<pk>/', auth_view.ProfileUpdateView.as_view(), name='profile_update'),
     # Booking
     path('booking/', booking_view.AddNewBookingView.as_view(), name='booking'),
@@ -36,4 +37,7 @@ urlpatterns = [
     path('login/', auth_view.SignInView.as_view(), name='login'),
     path('logout/', auth_view.Logout.as_view(), name='logout'),
     path('registration/', auth_view.SingUpView.as_view(), name='registration'),
+    path('user/change-password/', auth_views.PasswordChangeView.as_view(template_name='auth/users/change_password.html',
+                                                                        success_url='/'),
+         name='change_password'),
 ]
