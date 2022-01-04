@@ -82,10 +82,12 @@
                                 <label for="address">My Address</label>
                                 <input type="text" class="form-control" value="{{ profile_ctx.address }}" disabled>
                             </div>
-                            <div class="form-group">
-                                <img width="150" height="150" style="border-radius: 50%"
-                                     src="{{ profile_ctx.profile_picture.url }}" alt="{{ request.user.username }}">
-                            </div>
+                            {% if profile_ctx.profile_picture %}
+                                <div class="form-group">
+                                    <img width="150" height="150" style="border-radius: 50%"
+                                         src="{{ profile_ctx.profile_picture.url }}" alt="{{ request.user.username }}">
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

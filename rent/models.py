@@ -1,4 +1,5 @@
 import datetime
+from django.utils.timezone import now
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
@@ -24,7 +25,7 @@ class Profile(BaseEntity):
     username = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     address = models.TextField(blank=True, null=True)
     gender = models.IntegerField(choices=SEX.select_sex(), default=SEX.MALE.value)
-    date_of_birth = models.DateField(blank=True, null=True, default=None)
+    date_of_birth = models.DateField(blank=True, null=True, default=now)
     nid_number = models.IntegerField(default=123)
     marital_status = models.IntegerField(choices=MARITAL.select_status(), default=MARITAL.UNMARRIED.value)
     profile_picture = models.ImageField(upload_to='profile//%y/%m', blank=True, null=True)
