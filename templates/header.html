@@ -18,8 +18,8 @@
                 <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
                     <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
                        aria-expanded="false">
-                        {% if profile_ctx.profile_picture %}
-                            <img class="img-xs rounded-circle" src="{{ profile_ctx.profile_picture.url }}"
+                        {% if request.user.profile.profile_picture.url %}
+                            <img class="img-xs rounded-circle" src="{{ request.user.profile.profile_picture.url }}"
                                  alt="Profile image">
                         {% else %}
                             <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
@@ -28,8 +28,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                         <div class="dropdown-header text-center">
-                            {% if profile_ctx.profile_picture %}
-                                <img class="img-md rounded-circle" src="{{ profile_ctx.profile_picture.url }}"
+                            {% if request.user.profile.profile_picture.url %}
+                                <img class="img-md rounded-circle" src="{{ request.user.profile.profile_picture.url }}"
                                      alt="Profile image">
                             {% else %}
                                 <img class="img-md rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
