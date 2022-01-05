@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from rent.models import Booking
-from rent.forms import BookingForm
+from rent.form.booking_form import BookingForm
 from rent.filters import BookingFilter
 
 

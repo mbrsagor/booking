@@ -26,5 +26,4 @@ class RentListPageView(TemplateView):
 class RentDetailsView(DetailView):
     model = Rent
     context_object_name = 'rent'
-
     template_name = 'homepage/rent_details.html'
