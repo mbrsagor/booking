@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from rent.models import Location
-from rent.form.rent_form import LocationForm
+from rent.forms.rent_form import LocationForm
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')

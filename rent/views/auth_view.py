@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from rent.form.auth_form import UserLoginForm, UserSignUpForm, ProfileUpdateForm
+from rent.forms.auth_form import UserLoginForm, UserSignUpForm, ProfileUpdateForm
 from rent.models import Profile, User
 
 
