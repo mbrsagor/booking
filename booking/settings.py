@@ -51,7 +51,8 @@ INTERNAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'django_filters'
+    'rest_framework',
+    'django_filters',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + INTERNAL_APPS + THIRD_PARTY_APPS
