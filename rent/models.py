@@ -41,6 +41,11 @@ class Profile(BaseEntity):
     def make_full_name(self):
         return f"{self.username.first_name} {self.username.last_name}"
 
+    @property
+    def image_url(self):
+        if self.profile_picture and hasattr(self.profile_picture, 'url'):
+            return self.profile_picture.url
+
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

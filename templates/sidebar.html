@@ -4,13 +4,8 @@
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="profile-image">
-                    {% if user.profile.profile_picture.url %}
-                        <img class="img-xs rounded-circle" src="{{ user.profile.profile_picture.url }}"
+                    <img class="img-xs rounded-circle" src="{{  request.user.profile.image_url.url|default_if_none:'#' }}"
                              alt="profile image">
-                    {% else %}
-                        <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
-                             alt="profile image">
-                    {% endif %}
                     <div class="dot-indicator bg-success"></div>
                 </div>
                 <div class="text-wrapper">

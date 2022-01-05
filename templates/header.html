@@ -18,23 +18,13 @@
                 <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
                     <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown"
                        aria-expanded="false">
-                        {% if request.user.profile.profile_picture.url %}
-                            <img class="img-xs rounded-circle" src="{{ request.user.profile.profile_picture.url }}"
+                         <img class="img-xs rounded-circle" src="{{ request.user.profile.image_url.url|default_if_none:'#' }}"
                                  alt="Profile image">
-                        {% else %}
-                            <img class="img-xs rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
-                                 alt="Profile image">
-                        {% endif %}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                         <div class="dropdown-header text-center">
-                            {% if request.user.profile.profile_picture.url %}
-                                <img class="img-md rounded-circle" src="{{ request.user.profile.profile_picture.url }}"
+                            <img class="img-md rounded-circle" src="{{ request.user.profile.image_url.url|default_if_none:'#' }}"
                                      alt="Profile image">
-                            {% else %}
-                                <img class="img-md rounded-circle" src="{% static 'assets/images/faces/face8.jpg' %}"
-                                     alt="Profile image">
-                            {% endif %}
                             <p class="mb-1 mt-3 font-weight-semibold">{{ request.user.username }}</p>
                             <p class="font-weight-light text-muted mb-1">{{ request.user.email }}</p>
                             <a href="{% url 'logout' %}">Logout</a>
