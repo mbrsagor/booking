@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 
-from .utils import TYPES, ROLE, STATUS, PAYMENT, SEX, MARITAL
+from rent.utils.enum import TYPES, ROLE, STATUS, PAYMENT, SEX, MARITAL
 
 
 class BaseEntity(models.Model):

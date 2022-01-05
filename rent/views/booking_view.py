@@ -7,7 +7,7 @@ from django.utils.decorators import method_decorator
 
 from rent.models import Booking
 from rent.forms.booking_form import BookingForm
-from rent.filters import BookingFilter
+from rent.filters.filter import BookingFilter
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
