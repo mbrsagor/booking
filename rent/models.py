@@ -81,7 +81,7 @@ class Rent(BaseEntity):
     name = models.CharField(max_length=120)
     bed_room = models.IntegerField(default=1)
     bath_room = models.IntegerField(default=0)
-    price = models.DecimalField(default=0.00, max_digits=10, decimal_places=8)
+    price = models.IntegerField(default=0.00)
     discount_price = models.DecimalField(default=0.00, max_digits=10, decimal_places=8)
     rent_location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='RentLocation')
     types = models.IntegerField(choices=TYPES.select_types(), default=TYPES.ROOM.value)
@@ -111,11 +111,10 @@ class Booking(BaseEntity):
     def __str__(self):
         return f"Customer: {self.customer.username} => Rent: {self.rent_name.name} => Booking Date: {self.booking_date}"
 
-    # @property
-    # def get_rents(self):
-    #     for rent in self.rent_name.all():
-    #         return rent.name
-
     @property
     def total_day(self):
         return self.checkout_date - self.booking_date
+
+    @property
+    def total_calculation(self):
+        return self.rent_name.price * Booking.objects.count()
