@@ -1,4 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -13,6 +15,11 @@ class UserListView(ListView):
     template_name = 'auth/users/user_list.html'
     context_object_name = 'users'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(UserListView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class CustomerListView(ListView):
@@ -23,6 +30,11 @@ class CustomerListView(ListView):
     def get_queryset(self):
         return User.objects.filter(role=0)
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(CustomerListView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class UserUpdateView(SuccessMessageMixin, UpdateView):
@@ -32,6 +44,11 @@ class UserUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'The user has been updated successful'
     success_url = '/users/'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(UserUpdateView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class UserDeleteView(SuccessMessageMixin, DeleteView):
@@ -39,3 +56,8 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
     success_message = 'The user has been deleted'
     template_name = 'auth/users/user_delete.html'
     success_url = '/users/'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(UserDeleteView, self).dispatch(request, *args, **kwargs)

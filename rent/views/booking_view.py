@@ -15,7 +15,7 @@ class AddNewBookingView(SuccessMessageMixin, CreateView):
     model = Booking
     form_class = BookingForm
     template_name = 'booking/booking.html'
-    success_message = 'The booking has been done'
+    success_message = 'Congratulations! Your booking has been done.'
     success_url = '/booking/'
 
     def form_valid(self, form):

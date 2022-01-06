@@ -113,8 +113,19 @@ class Booking(BaseEntity):
 
     @property
     def total_day(self):
+        check = self.checkout_date - self.booking_date
+        print(check)
+        print(type(check))
         return self.checkout_date - self.booking_date
+
+    @property
+    def total_price(self):
+        return self.rent_name.price * self.total_day
 
     @property
     def total_calculation(self):
         return self.rent_name.price * Booking.objects.count()
+
+    @property
+    def average_calculation(self):
+        return self.rent_name.price // Booking.objects.count()

@@ -15,6 +15,15 @@ class RentListView(ListView):
     template_name = 'rent/rent_list.html'
     context_object_name = 'rent'
 
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Rent.objects.all()
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(RentListView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class CreateRentView(SuccessMessageMixin, CreateView):
