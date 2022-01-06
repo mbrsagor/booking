@@ -15,6 +15,16 @@ class UserListView(ListView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
+class CustomerListView(ListView):
+    model = User
+    template_name = 'auth/users/customers.html'
+    context_object_name = 'customers'
+
+    def get_queryset(self):
+        return User.objects.filter(role=0)
+
+
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
 class UserUpdateView(SuccessMessageMixin, UpdateView):
     model = User
     form_class = UserUpdateForm

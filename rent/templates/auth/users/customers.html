@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Customers List || Booking {% endblock %}
+
+
+{% block content %}
+
+    {% include 'location/pageTitle.html' %}
+    {% include 'common/message.html' %}
+
+    <div class="row">
+        <div class="col-md-12 grid-margin">
+            <div class="card">
+                {% if customers %}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Role</th>
+                                <th>Created Date</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for obj in customers %}
+                                <tr>
+                                    <td>{{ obj.username }}</td>
+                                    <td>{{ obj.email }} </td>
+                                    <td>{{ obj.phone_number }}</td>
+                                    <td>{% if obj.role == 0 %} CUSTOMER {% elif obj.role == 1 %}
+                                        MANAGER {% elif obj.role == 2 %} ACCOUNT {% else %} ADMIN {% endif %}</td>
+                                    <td>{{ obj.created_at }}</td>
+                                    <td class="text-center">
+                                        <a title="Update the user" href="{% url 'use_update' obj.pk %}"><i
+                                                class="mdi mdi-pencil"></i></a>
+                                        <a title="Delete the user" href="{% url 'use_delete' obj.pk %}"><i
+                                                class="mdi mdi-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
