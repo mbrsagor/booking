@@ -6,23 +6,23 @@
                     <div class="col-md-6">
                         <div class="d-flex align-items-center pb-2">
                             <div class="dot-indicator bg-danger mr-2"></div>
-                            <p class="mb-0">Total Income</p>
+                            <p class="mb-0">Total Due Booking</p>
                         </div>
-                        <h4 class="font-weight-semibold">$7,590</h4>
+                        <h4 class="font-weight-semibold">{{ due_booking.count }}</h4>
                         <div class="progress progress-md">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 78%" aria-valuenow="78"
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{ due_booking.count }}%" aria-valuenow="{{ due_booking.count }}"
                                  aria-valuemin="0" aria-valuemax="78"></div>
                         </div>
                     </div>
                     <div class="col-md-6 mt-4 mt-md-0">
                         <div class="d-flex align-items-center pb-2">
                             <div class="dot-indicator bg-success mr-2"></div>
-                            <p class="mb-0">Active Users</p>
+                            <p class="mb-0">Active Customer</p>
                         </div>
-                        <h4 class="font-weight-semibold">$5,460</h4>
+                        <h4 class="font-weight-semibold">{{ customers.count }}</h4>
                         <div class="progress progress-md">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 45%"
-                                 aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ customers.count }}%"
+                                 aria-valuenow="45" aria-valuemin="0" aria-valuemax="{{ customers.count }}"></div>
                         </div>
                     </div>
                 </div>

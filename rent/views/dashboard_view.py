@@ -44,9 +44,11 @@ class DashboardView(ListView):
             'booking': Booking.objects.all().order_by('-id'),
             'cancel_booking': Booking.objects.filter(status=1),
             'pending_booking': Booking.objects.filter(status=0),
+            'due_booking': Booking.objects.filter(payment_type=7),
             'users': User.objects.all(),
+            'customers': User.objects.filter(role=0),
             'locations': Location.objects.all(),
             'rents': Rent.objects.all(),
-            # 'booking_status': Booking.objects.filter(customer=self.request.user),
+            'booking_status': Booking.objects.filter(customer=self.request.user),
         })
         return context

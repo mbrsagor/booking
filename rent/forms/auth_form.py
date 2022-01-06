@@ -66,7 +66,7 @@ class CustomUserChangeForm(UserChangeForm):
 class UserUpdateForm(ModelForm):
     class Meta:
         model = User
-        exclude = ('date_joined', 'password',)
+        exclude = ('date_joined', 'password', 'is_active')
         fields = (
             '__all__'
         )
