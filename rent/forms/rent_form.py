@@ -18,6 +18,11 @@ class LocationForm(ModelForm):
 
 
 class RentForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(RentForm, self).__init__(*args, **kwargs)
+        self.fields['rent_location'].queryset = Location.objects.filter(is_active=True)
+
     class Meta:
         model = Rent
         fields = (
