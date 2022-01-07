@@ -24,7 +24,7 @@ class UserListView(ListView):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class CustomerListView(ListView):
     model = User
-    template_name = 'auth/users/customers.html'
+    template_name = 'customers/customers.html'
     context_object_name = 'customers'
 
     def get_queryset(self):
