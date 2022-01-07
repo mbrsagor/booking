@@ -82,7 +82,6 @@ class Rent(BaseEntity):
     bed_room = models.IntegerField(default=1)
     bath_room = models.IntegerField(default=0)
     price = models.IntegerField(default=0.00)
-    discount_price = models.DecimalField(default=0.00, max_digits=10, decimal_places=8)
     rent_location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='RentLocation')
     types = models.IntegerField(choices=TYPES.select_types(), default=TYPES.ROOM.value)
     is_available = models.BooleanField(default=True)

@@ -17,7 +17,7 @@
                         {% csrf_token %}
                         <h2>{{ form.errors }}</h2>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="name">Enter valid rent name</label>
                                     {{ form.name }}
@@ -33,12 +33,6 @@
                                 <div class="form-group">
                                     <label for="bed_room">How many bath room</label>
                                     {{ form.bath_room }}
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="types">Rent Type</label>
-                                    {{ form.types }}
                                 </div>
                             </div>
                         </div>
@@ -57,8 +51,8 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="discount_price">Discount Price</label>
-                                    {{ form.discount_price }}
+                                    <label for="types">Rent Type</label>
+                                    {{ form.types }}
                                 </div>
                             </div>
                             <div class="col-md-3">

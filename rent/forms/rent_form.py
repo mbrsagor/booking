@@ -33,7 +33,6 @@ class RentForm(ModelForm):
             'bed_room': NumberInput(attrs={'class': 'form-control', 'id': 'bed_room'}),
             'bath_room': NumberInput(attrs={'class': 'form-control', 'id': 'bath_room'}),
             'price': TextInput(attrs={'class': 'form-control', 'id': 'price'}),
-            'discount_price': TextInput(attrs={'class': 'form-control', 'id': 'discount_price'}),
             'rent_location': Select(attrs={'class': 'form-control', 'id': 'rent_location'}),
             'types': Select(attrs={'class': 'form-control', 'id': 'types'}),
             'is_available': CheckboxInput(attrs={'class': 'form-check-input', 'id': 'is_available'}),
