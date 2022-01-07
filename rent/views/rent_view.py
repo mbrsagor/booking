@@ -33,6 +33,11 @@ class CreateRentView(SuccessMessageMixin, CreateView):
     success_message = 'The rent has been created.'
     success_url = '/create-rent/'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(CreateRentView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class RentUpdateView(SuccessMessageMixin, UpdateView):
@@ -41,6 +46,11 @@ class RentUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'The rent has been updated successful'
     template_name = 'rent/create_rent.html'
     success_url = '/rent/'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(RentUpdateView, self).dispatch(request, *args, **kwargs)
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -61,3 +71,8 @@ class RentDeleteView(SuccessMessageMixin, DeleteView):
     success_message = 'The rent has been deleted'
     template_name = 'rent/rent_delete.html'
     success_url = '/rent/'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(RentDeleteView, self).dispatch(request, *args, **kwargs)

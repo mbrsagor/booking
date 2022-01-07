@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.views import View
 from django.contrib.messages.views import SuccessMessageMixin
@@ -50,6 +51,15 @@ class AllBookingView(ListView):
     context_object_name = 'all_booking'
     template_name = 'booking/all_booking.html'
 
+    def get_queryset(self):
+        if self.request.user.is_superuser or self.request.user.role == 3:
+            return Booking.objects.all()
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(AllBookingView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class UpdateBookingView(SuccessMessageMixin, UpdateView):
@@ -59,6 +69,11 @@ class UpdateBookingView(SuccessMessageMixin, UpdateView):
     success_message = 'The booking has been done'
     success_url = '/all-booking/'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(UpdateBookingView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class DeleteBookingView(SuccessMessageMixin, DeleteView):
@@ -67,9 +82,19 @@ class DeleteBookingView(SuccessMessageMixin, DeleteView):
     template_name = 'booking/delete_booking.html'
     success_url = '/all-booking/'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(DeleteBookingView, self).dispatch(request, *args, **kwargs)
+
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class BookingFilerListView(View):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect(reverse_lazy('my_booking_history'))
+        return super(BookingFilerListView, self).dispatch(request, *args, **kwargs)
 
     def get(self, request):
         booking_list = Booking.objects.all()
