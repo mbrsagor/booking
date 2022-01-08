@@ -64,6 +64,7 @@ class RentUpdateDetailDeleteAPIView(views.APIView):
     def delete(self, request, pk):
         rent = self.get_object(pk)
         if rent is not None:
+            rent.delete()
             return Response(prepare_success_response("Data deleted successfully"), status=status.HTTP_200_OK)
         else:
             return Response(prepare_error_response("Content Not found"), status=status.HTTP_400_BAD_REQUEST)
