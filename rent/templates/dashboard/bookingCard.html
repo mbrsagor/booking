@@ -22,7 +22,7 @@
                             <tbody>
                             {% for obj in booking %}
                                 <tr>
-                                    <td>INV-87239</td>
+                                    <td>INV-{{ obj.rent_name.price }}</td>
                                     <td>{{ obj.rent_name }}</td>
                                     <td>{{ obj.customer }}</td>
                                     <td>

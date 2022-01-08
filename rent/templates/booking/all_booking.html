@@ -22,6 +22,7 @@
                                 <th>Created Date</th>
                                 <th>Booking Date</th>
                                 <th>Phone Number</th>
+                                <th>Amount</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                             </thead>
@@ -36,6 +37,7 @@
                                     <td>{{ obj.created_at }}</td>
                                     <td>{{ obj.booking_date }}</td>
                                     <td>{{ obj.phone_number }}</td>
+                                    <td>{{ obj.rent_name.price }}</td>
                                     <td class="text-center">
                                         <a title="Booking Confirm" href="{% url 'booking_confirm' obj.pk %}"><i
                                                 class="mdi mdi-pencil"></i></a>

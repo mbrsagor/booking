@@ -117,11 +117,3 @@ class Booking(BaseEntity):
     @property
     def total_day_cost(self):
         return self.total_day * self.rent_name.price
-
-    @property
-    def total_calculation(self):
-        return self.rent_name.price * Booking.objects.count()
-
-    @property
-    def total_booking_due(self):
-        return 120
