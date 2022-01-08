@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.views import View
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
@@ -73,6 +73,13 @@ class UpdateBookingView(SuccessMessageMixin, UpdateView):
         if not self.request.user.is_superuser:
             return redirect(reverse_lazy('my_booking_history'))
         return super(UpdateBookingView, self).dispatch(request, *args, **kwargs)
+
+
+@method_decorator(login_required(login_url='/login/'), name='dispatch')
+class BookingDetailsView(DetailView):
+    model = Booking
+    context_object_name = 'booking_details'
+    template_name = 'booking/booking_details.html'
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
