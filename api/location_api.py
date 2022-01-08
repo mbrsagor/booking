@@ -13,7 +13,7 @@ class LocationSerializer(serializers.ModelSerializer):
 
 
 class LocationAPIListCreateView(views.APIView):
-    permission_classes = [permissions.IsAdminUser, ]
+    # permission_classes = [permissions.IsAdminUser, ]
 
     def get(self, request):
         location = Location.objects.all()

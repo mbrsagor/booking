@@ -86,7 +86,7 @@ class Rent(BaseEntity):
     types = models.IntegerField(choices=TYPES.select_types(), default=TYPES.ROOM.value)
     is_available = models.BooleanField(default=True)
     descriptions = models.TextField()
-    image = models.ImageField(upload_to='rent/%y/%m')
+    image = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)
     gallery_image = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)
     gallery_image2 = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)
     gallery_image3 = models.ImageField(upload_to='rent/%y/%m', null=True, blank=True)

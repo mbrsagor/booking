@@ -27,31 +27,33 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-7 rent_image">
-                                <a href="{{ rent.image.url }}" data-lightbox="roadtrip">
-                                    <img src="{{ rent.image.url }}" alt="{{ obj.name }}">
-                                </a>
-                                {% if rent.gallery_image.url %}
+                                {% if  rent.image %}
+                                    <a href="{{ rent.image.url }}" data-lightbox="roadtrip">
+                                        <img src="{{ rent.image.url }}" alt="{{ obj.name }}">
+                                    </a>
+                                {% endif %}
+                                {% if rent.gallery_image %}
                                     <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
                                         <img class="rent_gallery" src="{{ rent.gallery_image.url }}" alt="">
                                     </a>
                                 {% endif %}
-                                {% if rent.gallery_image.url %}
+                                {% if rent.gallery_image %}
                                     <a href="{{ rent.gallery_image.url }}" data-lightbox="roadtrip">
                                         <img class="rent_gallery"
                                              src="{{ rent.gallery_image.url }}" alt="">
                                     </a>
                                 {% endif %}
-                                {% if rent.gallery_image1.url %}
+                                {% if rent.gallery_image1 %}
                                     <a href="{{ rent.gallery_image1.url }}" data-lightbox="roadtrip">
                                         <img class="rent_gallery" src="{{ rent.gallery_image1.url }}" alt="">
                                     </a>
                                 {% endif %}
-                                {% if rent.gallery_image2.url %}
+                                {% if rent.gallery_image2 %}
                                     <a href="{{ rent.gallery_image2.url }}" data-lightbox="roadtrip">
                                         <img class="rent_gallery" src="{{ rent.gallery_image2.url }}" alt="">
                                     </a>
                                 {% endif %}
-                                {% if rent.gallery_image3.url %}
+                                {% if rent.gallery_image3 %}
                                     <a href="{{ rent.gallery_image3.url }}" data-lightbox="roadtrip">
                                         <img class="rent_gallery" src="{{ rent.gallery_image3.url }}" alt="">
                                     </a>

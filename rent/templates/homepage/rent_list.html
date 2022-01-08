@@ -19,7 +19,9 @@
                     <div class="col-md-3">
                         <div class="card mt-3">
                             <div class="card-body">
-                                <img src="{{ obj.image.url }}" alt="{{ obj.name }}">
+                                {% if  obj.image %}
+                                    <img src="{{ obj.image.url }}" alt="{{ obj.name }}">
+                                {% endif %}
                                 <ul class="list-group-item">
                                     <li class="list-group-item">{{ obj.name }}</li>
                                     <li class="list-group-item">Regular Price: {{ obj.price }}</li>
