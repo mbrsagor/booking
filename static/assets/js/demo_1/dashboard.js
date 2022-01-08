@@ -513,13 +513,13 @@
   
         var Marketing_data_2_1 = [125, 138, 108, 193, 102, 200, 290, 204];
         var Marketing_data_2_2 = [330, 380, 230, 400, 309, 430, 340, 310];
-        var Marketing_data_2_3 = [375, 440, 284, 450, 386, 480, 400, 365];
-        var Marketing_data_2_4 = [425, 480, 324, 490, 426, 520, 440, 405];
+        // var Marketing_data_2_3 = [375, 440, 284, 450, 386, 480, 400, 365];
+        // var Marketing_data_2_4 = [425, 480, 324, 490, 426, 520, 440, 405];
   
-        var Marketing_data_1_1 = [145, 238, 148, 293, 242, 235, 256, 334];
-        var Marketing_data_1_2 = [330, 380, 230, 400, 309, 430, 340, 310];
-        var Marketing_data_1_3 = [375, 440, 284, 450, 386, 480, 400, 365];
-        var Marketing_data_1_4 = [425, 480, 324, 490, 426, 520, 440, 405];
+        // var Marketing_data_1_1 = [145, 238, 148, 293, 242, 235, 256, 334];
+        // var Marketing_data_1_2 = [330, 380, 230, 400, 309, 430, 340, 310];
+        // var Marketing_data_1_3 = [375, 440, 284, 450, 386, 480, 400, 365];
+        // var Marketing_data_1_4 = [425, 480, 324, 490, 426, 520, 440, 405];
   
         var MarketingChart = new Chart(MarketingChartCanvas, {
           type: 'bar',
