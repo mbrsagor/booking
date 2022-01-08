@@ -11,6 +11,12 @@ class DashboardView(TemplateView):
     def dispatch(self, *args, **kwargs):
         return super(DashboardView, self).dispatch(*args, **kwargs)
 
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     # Add in the publisher
+    #     context['booking'] = Booking.objects.filter()
+    #     return context
+
     def get(self, request, *args, **kwargs):
         booking = Booking.objects.all().order_by('-id')
         cancel_booking = Booking.objects.filter(status=1)
@@ -32,7 +38,7 @@ class DashboardView(TemplateView):
             'pending_booking': pending_booking,
             'booking_status': booking_status,
         }
-        print(f"Due booking: {int(due_booking[0])}")
+        # print(f"Due booking: {int(due_booking[0])}")
         return self.render_to_response(context)
 
     template_name = 'dashboard/dashboard.html'

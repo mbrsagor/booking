@@ -4,7 +4,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 
-from rent.manager import BookingCalculationManager
 from rent.utils.enum import TYPES, ROLE, STATUS, PAYMENT, SEX, MARITAL
 
 
@@ -108,8 +107,6 @@ class Booking(BaseEntity):
     booking_date = models.DateField()
     checkout_date = models.DateField()
 
-    booking_cm = BookingCalculationManager()
-
     def __str__(self):
         return f"Customer:{self.customer.username} => Rent:{self.rent_name.name} => Booking Date:{self.booking_date}"
 
@@ -126,5 +123,5 @@ class Booking(BaseEntity):
         return self.rent_name.price * Booking.objects.count()
 
     @property
-    def average_calculation(self):
-        return self.rent_name.price // Booking.objects.count()
+    def total_booking_due(self):
+        return 120
