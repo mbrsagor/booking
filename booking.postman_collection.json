@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "f55daec7-7485-4b1e-9bc3-3b7c615ab572",
+		"name": "booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "rent-list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/rent/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rent",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-rent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"laxriax 4 bed hotel and restaurant\",\n    \"bed_room\": 6,\n    \"bath_room\": 3,\n    \"price\": 5500,\n    \"rent_location\": 6,\n    \"types\": 0,\n    \"is_available\": true,\n    \"descriptions\": \"Completely engage open-source potentialities vis-a-vis cross-platform customer service. Uniquely envisioneer scalable deliverables whereas market-driven information. Credibly brand principle-centered leadership before.\",\n    \"image\": null,\n    \"gallery_image\": null,\n    \"gallery_image2\": null,\n    \"gallery_image3\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/rent/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rent",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rent-details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/rent/24/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rent",
+						"24",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rent-update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 24,\n    \"name\": \"Laxriax 4 bed hotel and restaurant.\",\n    \"bed_room\": 4,\n    \"bath_room\": 2,\n    \"price\": 4000,\n    \"rent_location\": 6,\n    \"types\": 0,\n    \"is_available\": true,\n    \"descriptions\": \"Completely engage open-source potentialities vis-a-vis cross-platform customer service. Uniquely envisioneer scalable deliverables whereas market-driven information. Credibly brand principle-centered leadership before.\",\n    \"image\": \"/media/rent/22/01/blood_donors_sldier1.jpg\",\n    \"gallery_image\": \"/media/rent/22/01/image_2021_04_15T17_14_54_238Z.png\",\n    \"gallery_image2\": \"/media/rent/22/01/cmpg_aySmc6x.png\",\n    \"gallery_image3\": \"/media/rent/22/01/code-share_4nVy9yU.png\",\n    \"created_at\": \"2022-01-05T10:08:12.587049Z\",\n    \"updated_at\": \"2022-01-05T10:13:51.180549Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/rent/24/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rent",
+						"24",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rent-delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/rent/32/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"rent",
+						"32",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "location-list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "location-create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Rangpur\",\n    \"parent\": 6,\n    \"is_active\": true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/location/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"location",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-booking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}

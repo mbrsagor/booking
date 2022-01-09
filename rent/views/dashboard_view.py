@@ -36,7 +36,7 @@ class DashboardView(TemplateView):
             'pending_booking': pending_booking,
             'booking_status': booking_status,
             'total_income': total_income,
-            'average_income': average_income,
+            'average_income': int(average_income),
         }
         return self.render_to_response(context)
     template_name = 'dashboard/dashboard.html'

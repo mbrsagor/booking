@@ -1,3 +1,14 @@
+"""
+total = 0
+
+
+def booking_average_price(numbers):
+    total = sum(numbers)
+    total = int(total)
+    return total / len(numbers)
+"""
+
+
 def booking_average_price(num):
     price = 0
 
