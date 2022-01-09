@@ -1,5 +1,5 @@
 # Booking
-The application basically an online booking system that users can be booking any kind of room, hotel, etc.
+The application basically, is an online booking system that users can be booking any kind of room, hotel, etc.
 
 #### Instruction to run the application in your local dev server:
 
@@ -17,7 +17,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Then create ``.env`` file and paste code from `sample.env` file and add validate information.
+###### Then create ``.env`` file and paste code from `sample.env` file and add validate information.
+
 -------------------------------------------
 ```bash
 |--> sample.env
@@ -27,8 +28,8 @@ Then create ``.env`` file and paste code from `sample.env` file and add validate
 ###### Run development server:
 
 ```
-python manage.py makemigrations user
-python manage.py migrate user
+python manage.py makemigrations rent
+python manage.py migrate rent
 python manage.py migrate
 python manage.py runserver
 ```
@@ -70,7 +71,6 @@ LOGGING = {
     }, 
 }
 ```
-
 ------------------
 
 ```python
@@ -82,3 +82,7 @@ def appError():
 ```
 
 ## Happy coding :wink:
+
+
+/etc/nginx/sites-available/
+18.141.213.109
