@@ -101,7 +101,7 @@ class Booking(BaseEntity):
     address = models.TextField()
     status = models.IntegerField(choices=STATUS.get_status(), default=STATUS.PENDING.value, blank=True, null=True)
     phone_number = models.CharField(max_length=14, blank=True, null=True)
-    transaction_id = models.CharField(max_length=30, blank=True, null=True)
+    transaction_id = models.CharField(max_length=30, blank=True, null=True, unique=True)
     booking_purpose = models.CharField(max_length=150, blank=True, null=True)
     payment_type = models.IntegerField(choices=PAYMENT.select_payment(), default=PAYMENT.DUE.value)
     booking_date = models.DateField()

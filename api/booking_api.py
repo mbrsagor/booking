@@ -24,11 +24,11 @@ class BookingAPIListCreateView(views.APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        validate_error = validate_booking_service(request.data)
-        if validate_error is not None:
-            return Response(prepare_error_response(validate_error), status=status.HTTP_400_BAD_REQUEST)
+        # validate_error = validate_booking_service(request.data)
+        # if validate_error is not None:
+        #     return Response(prepare_error_response(validate_error), status=status.HTTP_400_BAD_REQUEST)
         serializer = BookingSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(customer=request.user)
             return Response(prepare_success_response(serializer.data), status=status.HTTP_200_OK)
         return Response(prepare_error_response(serializer.errors), status=status.HTTP_400_BAD_REQUEST)
