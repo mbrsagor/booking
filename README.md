@@ -18,6 +18,11 @@ pip install -r requirements.txt
 ```
 
 Then create ``.env`` file and paste code from `sample.env` file and add validate information.
+-------------------------------------------
+```bash
+|--> sample.env
+|--> .env
+```
 
 ###### Run development server:
 
@@ -27,3 +32,53 @@ python manage.py migrate user
 python manage.py migrate
 python manage.py runserver
 ```
+
+
+###### Rest API endpoint:
+```bash
+http://127.0.0.1:8000/api/
+```
+
+
+###### LOGGING: project settings.py file paste the code
+```python
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,                                                                    
+    'handlers': {                                                                                         
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': '/code/myapp/logs/info.log',             
+        },
+        'console': { 
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',                                                             
+        },                                                                                                
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],                                                                         
+            'level': 'INFO',
+            'propagate': True,                                                                            
+        },
+        'app-logger': { 
+            'handlers': ['file', 'console'],                                                              
+            'level': 'CRITICAL',                                                                          
+            'propagate': True,                                                                            
+        },                                                               
+    }, 
+}
+```
+
+------------------
+
+```python
+import logging
+
+def appError():
+    appLogger = logging.getLogger('app-logger')                                                           
+    appLogger.critical("A critical error occurred")
+```
+
+## Happy coding :wink:
