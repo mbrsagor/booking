@@ -16,7 +16,7 @@ class RentSerializer(serializers.ModelSerializer):
 
 
 class RentAPIListCreateView(views.APIView):
-    # permission_classes = [permissions.IsAdminUser, ]
+    permission_classes = [permissions.IsAdminUser, ]
 
     def get(self, request):
         location = Rent.objects.all()

@@ -16,7 +16,7 @@ class BookingSerializer(serializers.ModelSerializer):
 
 
 class BookingAPIListCreateView(views.APIView):
-    # permission_classes = [permissions.IsAdminUser, ]
+    permission_classes = [permissions.IsAdminUser, ]
 
     def get(self, request):
         location = Booking.objects.all()
