@@ -3,7 +3,6 @@ from rest_framework.response import Response
 
 from rent.models import Rent
 from rent.utils.responses import prepare_success_response, prepare_error_response
-from rent.utils.validate_service import validate_rent_service
 
 
 class RentSerializer(serializers.ModelSerializer):
@@ -32,7 +31,7 @@ class RentAPIListCreateView(views.APIView):
 
 
 class RentUpdateDetailDeleteAPIView(views.APIView):
-    # permission_classes = [permissions.IsAdminUser, ]
+    permission_classes = [permissions.IsAdminUser, ]
 
     def get_object(self, pk):
         try:
@@ -48,9 +47,6 @@ class RentUpdateDetailDeleteAPIView(views.APIView):
         return Response(prepare_error_response("Content Not found"), status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk):
-        validate_error = validate_rent_service(request.data)
-        if validate_error is not None:
-            return Response(prepare_error_response(validate_error), status=status.HTTP_400_BAD_REQUEST)
         rent = self.get_object(pk)
         if rent is not None:
             serializer = RentSerializer(data=request.data)
