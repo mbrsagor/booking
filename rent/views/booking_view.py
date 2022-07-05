@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
+from django.views import generic
 from django.views import View
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
@@ -12,12 +12,12 @@ from rent.filters.filter import BookingFilter
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class AddNewBookingView(SuccessMessageMixin, CreateView):
+class AddNewBookingView(SuccessMessageMixin, generic.CreateView):
     model = Booking
     form_class = BookingForm
+    success_url = '/booking/'
     template_name = 'booking/booking.html'
     success_message = 'Congratulations! Your booking has been done. We will contact you ASAP'
-    success_url = '/booking/'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -26,7 +26,7 @@ class AddNewBookingView(SuccessMessageMixin, CreateView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class MyBookingHistory(ListView):
+class MyBookingHistory(generic.ListView):
     model = Booking
     context_object_name = 'my_booking'
     template_name = 'booking/my_booking_history.html'
@@ -36,7 +36,7 @@ class MyBookingHistory(ListView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class NewBookingView(ListView):
+class NewBookingView(generic.ListView):
     model = Booking
     context_object_name = 'booking'
     template_name = 'booking/new_booking.html'
@@ -46,7 +46,7 @@ class NewBookingView(ListView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class AllBookingView(ListView):
+class AllBookingView(generic.ListView):
     model = Booking
     context_object_name = 'all_booking'
     template_name = 'booking/all_booking.html'
@@ -62,7 +62,7 @@ class AllBookingView(ListView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class UpdateBookingView(SuccessMessageMixin, UpdateView):
+class UpdateBookingView(SuccessMessageMixin, generic.UpdateView):
     model = Booking
     form_class = BookingForm
     template_name = 'booking/booking.html'
@@ -76,14 +76,14 @@ class UpdateBookingView(SuccessMessageMixin, UpdateView):
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class BookingDetailsView(DetailView):
+class BookingDetailsView(generic.DetailView):
     model = Booking
     context_object_name = 'booking_details'
     template_name = 'booking/booking_details.html'
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
-class DeleteBookingView(SuccessMessageMixin, DeleteView):
+class DeleteBookingView(SuccessMessageMixin, generic.DeleteView):
     model = Booking
     success_message = 'The booking has been deleted'
     template_name = 'booking/delete_booking.html'
