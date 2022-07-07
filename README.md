@@ -40,6 +40,11 @@ python manage.py runserver
 http://127.0.0.1:8000/api/
 ```
 
+#### psql DB new for python3.10 to 3.10
+```bash
+pip install psycopg2
+```
+
 
 ###### LOGGING: project settings.py file paste the code
 ```python
