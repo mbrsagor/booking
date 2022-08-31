@@ -15,5 +15,9 @@ def booking_average_price(num):
     for n in num:
         price = price + n
 
-    avg = price / len(num)
-    return avg
+    try:
+        avg = price / len(num)
+        return avg
+    except Exception as ex:
+        print(str(ex))
+        return str(ex)
