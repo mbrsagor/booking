@@ -17,7 +17,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-###### Then create ``.env`` file and paste code from `sample.env` file and add validate information.
+###### Then create ``.env`` file and paste code from `.sample.env` file and add validate information.
 
 -------------------------------------------
 ```bash
@@ -30,7 +30,6 @@ pip install -r requirements.txt
 ```
 python manage.py makemigrations rent
 python manage.py migrate rent
-python manage.py migrate
 python manage.py runserver
 ```
 
