@@ -21,3 +21,5 @@ def booking_average_price(num):
     except Exception as ex:
         print(str(ex))
         return str(ex)
+
+# https://www.youtube.com/watch?v=xyUIhluXF_Y
