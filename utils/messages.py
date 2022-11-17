@@ -1,0 +1,21 @@
+SIGNIN_SUCCESS = "Successfully user has been login."
+SIGNIN_FAILED = "Invalid login"
+SIGNUP_SUCCESS = "Successfully the account has been created."
+SIGNUP_FAILED = "Something went to wrong while creating an account."
+SIGN_OUT_SUCCESS = "Sign out successfully."
+EXPIRED = "Already token has been expired."
+GENERIC_CREATE_SUCCESS = "Data successfully created done."
+NO_CONTENT_FOUND = "No content found this ID."
+DELETE_PROPERTY = "The property has been deleted."
+PROFILE_UPDATE = "Profile has been successfully updated!"
+PROFILE_ERROR = "Profile updated error!"
+PASSWORD_MSG = 'Sorry! Password cant be empty.'
+PASSWORD_WRONG = 'Old password incorrect.'
+PASSWORD_CHANGE = 'Password change successfully.'
+OTP_FAILED = 'Sorry! OTP did not matched.'
+OTP_SUCCESS = 'OTP send success.'
+ERROR_COMMON = 'Something went wrong'
+INVALID_EMAIL = 'Invalid email! The email not register the system.'
+CREATE_MSG = "Your issue has been created"
+ISSUE_TITLE = "Issue created"
+
