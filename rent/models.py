@@ -7,12 +7,12 @@ from django.db.models.signals import post_save
 from rent.utils.enum import TYPES, ROLE, STATUS, PAYMENT, SEX, MARITAL
 
 
-class BaseEntity(models.Model):
+class Timestamp(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 
-class User(AbstractUser, BaseEntity):
+class User(AbstractUser, Timestamp):
     email = models.EmailField(blank=True, unique=False)
     phone_number = models.CharField(max_length=14, unique=True)
     role = models.IntegerField(choices=ROLE.select_role(), default=ROLE.CUSTOMER.value)
@@ -21,7 +21,7 @@ class User(AbstractUser, BaseEntity):
         return self.username
 
 
-class Profile(BaseEntity):
+class Profile(Timestamp):
     username = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     address = models.TextField(blank=True, null=True)
     gender = models.IntegerField(choices=SEX.select_sex(), default=SEX.MALE.value)
@@ -58,7 +58,7 @@ def create_user_profile(sender, instance, created, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 
 
-class Location(BaseEntity):
+class Location(Timestamp):
     name = models.CharField(max_length=150)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='location', blank=True, null=True)
     image = models.ImageField(upload_to='location/%y/%m', null=True, blank=True)
@@ -77,7 +77,7 @@ class Location(BaseEntity):
         return Location.objects.filter(parent=self).count()
 
 
-class Rent(BaseEntity):
+class Rent(Timestamp):
     name = models.CharField(max_length=120)
     bed_room = models.IntegerField(default=1)
     bath_room = models.IntegerField(default=0)
@@ -95,7 +95,7 @@ class Rent(BaseEntity):
         return self.name[:30]
 
 
-class Booking(BaseEntity):
+class Booking(Timestamp):
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bookingCustomer')
     rent_name = models.ForeignKey(Rent, on_delete=models.CASCADE, related_name='orderRent')
     address = models.TextField()
