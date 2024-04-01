@@ -1,0 +1,34 @@
+{
+    "status": "success",
+    "message": "Data successfully loaded",
+    "data": [
+        {
+            "category": "category name",
+            "features": [
+                {
+                    "name": "feature name",
+                    "tags": ["tag1", "tag2"],
+                    "status": "true",
+                    "thumbnail": "s3.bucketName.image.url"
+                },
+                {
+                    "name": "feature name two",
+                    "tags": ["tag1", "tag2"],
+                    "status": "false",
+                    "thumbnail": "s3.bucketName.image.url"
+                }
+            ]
+        },
+        {
+            "category": "category name two",
+            "features": [
+                {
+                    "name": "feature name",
+                    "tags": ["tag1", "tag2"],
+                    "status": "true",
+                    "thumbnail": "s3.bucketName.image.url"
+                }
+            ]
+        }
+    ]
+}
