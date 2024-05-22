@@ -11,6 +11,10 @@ class Timestamp(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        abstract = True
+        ordering = ['-created_at']
+
 
 class User(AbstractUser, Timestamp):
     email = models.EmailField(blank=True, unique=False)
@@ -18,7 +22,7 @@ class User(AbstractUser, Timestamp):
     role = models.IntegerField(choices=ROLE.select_role(), default=ROLE.CUSTOMER.value)
 
     def __str__(self):
-        return self.username
+        return self.email
 
 
 class Profile(Timestamp):
