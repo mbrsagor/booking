@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ transaction.project }} update {% endblock %}
+
+{% block content %}
+<style>
+  .remove_btn {
+    width: fit-content;
+    height: fit-content;
+  }
+</style>
+<div class="d-flex align-items-baseline justify-content-between">
+    <!-- Title -->
+    <h1 class="h2"> {{ transaction.project }} </h1>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Transaction update</li>
+        </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-0">
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            {% if form.errors %}
+                {% include 'common/error_msg.html' %}
+            {% endif %}
+            {% include 'common/success_msg.html' %}
+            <div class="row mt-5">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label class="mb-2" for="project">Select Project</label>
+                        <select name="project" class="form-select" id="project">
+                           {% for project in projects %}
+                            <option value="{{ project.id }}" {% if project.id == transaction.project_id %}selected{% endif %}>
+                                {{ project.name }}
+                            </option>
+                        {% endfor %}
+                        </select>
+                      </div>
+                    <label class="card-title mb-1">Transactions</label>
+                    <div style="margin-top: 15px;" id="formContainer">
+                    {% for profit in transaction.profits.all|dictsort:"id" %}
+                        <div id="numberForm" class="row mb-5 row_content">
+                            <div class="col-md-7">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-gap: 10px;">
+                                    <!-- Date -->
+                                    <div class="form-group">
+                                        <label class="mb-2" for="dateInput">Date</label>
+                                        <input type="date" name="date[]" id="dateInput" class="form-control" value="{{ profit.date|date:'Y-m-d' }}" />
+                                    </div>
+
+                                    <!-- Source Type -->
+                                    <div class="form-group mb-3">
+                                        <label class="mb-2" for="source_type">Source Type</label>
+                                        <select name="source_type" class="form-select">
+                                            <option value="1" {% if transaction.source_type == "1" or transaction.source_type == 1 %}selected{% endif %}>Labor</option>
+                                            <option value="2" {% if transaction.source_type == "2" or transaction.source_type == 2 %}selected{% endif %}>Vendor</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Worker (Labor/Vendor) -->
+                                    <div class="separate">
+                                        <!-- Labor Section -->
+                                        <div class="form-group labor_sec {% if transaction.source_type|stringformat:"s" != '1' %}d-none{% endif %}">
+                                            <label class="mb-2" for="labor-select">Labor</label>
+                                            <select id="labor-select" name="worker[]" class="form-select">
+                                                {% for labor in labors %}
+                                                <option value="{{ labor.id }}" {% if labor.id|stringformat:"s" == profit.worker.id|stringformat:"s" %}selected{% endif %}>
+                                                    {{ labor.name }}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <!-- Vendor Section -->
+                                        <div class="form-group vendor_sec {% if transaction.source_type|stringformat:"s" != '2' %}d-none{% endif %}">
+                                            <label class="mb-2" for="vendor">Vendor</label>
+                                            <select name="worker[]" class="form-select" id="vendor">
+                                                {% for vendor in vendors %}
+                                                <option value="{{ vendor.id }}" {% if vendor.id|stringformat:"s" == profit.worker.id|stringformat:"s" %}selected{% endif %}>
+                                                    {{ vendor.name }}
+                                                </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Quantity -->
+                                    <div class="form-group">
+                                        <label class="mb-2" for="quantity">Quantity</label>
+                                        <input type="number" id="quantity" name="quantity[]" step="0.01" value="{{ profit.quantity }}" class="form-control quantity" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Amount and Total -->
+                            <div class="col-md-5">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 15px;">
+                                    <div class="form-group">
+                                        <label class="mb-2" for="hourly_rate_info"> {%if transaction.id%} {% if transaction.source_type == 1 %} Hourly rate {% else %} Rate {% endif %} {% else %} <span id="member_price"></span> {% endif %}</label>
+                                        <input type="number" id="hourly_rate_info" name="amount[]" step="0.01" class="form-control amount" value="{{ profit.amount }}" />
+                                    </div>
+                                    <div>
+                                        <label for="total_prices" class="mb-2">Total Amount</label>
+                                        <input type="text" class="form-control totalPrice" id="total_prices" disabled value="{{ profit.total_amount }}" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div class="col-md-6 mt-3">
+                                <div class="form-group">
+                                    <textarea placeholder="Notes" class="form-control" name="notes[]" rows="1">{{ profit.notes }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                              <button type="button" class="btn btn-danger btn-sm mt-3 remove_btn">Remove</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                      <button onclick="addNewRow()" type="button" class="btn btn-primary btn-sm mt-3">Add More Transaction</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Transaction</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

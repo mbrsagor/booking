@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} Transaction list{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-baseline justify-content-between">
+    <!-- Title -->
+    <h1 class="h2"> Transaction list </h1>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Transactions</li>
+        </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col d-flex">
+        <!-- Card -->
+        <div class="card border-0 flex-fill w-100" data-list='{"valueNames": ["name", {"name": "key", "attr": "data-key"}, {"name": "status", "attr": "data-status"}, {"name": "created", "attr": "data-created"}], "page": 10}' id="keysTable">
+            <div class="card-header border-0">
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-end">
+                    <!-- Title -->
+                    <h2 class="card-header-title h4 text-uppercase">transactions</h2>
+                    <input class="form-control list-fuzzy-search mw-md-300px ms-md-auto mt-5 mt-md-0 mb-3 mb-md-0" type="text" placeholder="Search transactions">
+                </div>
+                {% include 'common/success_msg.html' %}
+            </div>
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="table align-middle table-hover table-nowrap mb-0">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                <a href="javascript: void(0);" class="text-muted list-sort" data-sort="name">Project Name</a>
+                            </th>
+                            <th>
+                                <a href="javascript: void(0);" class="text-muted list-sort" data-sort="get_worker_type">Source Type</a>
+                            </th>
+                            <th>
+                                <a href="javascript: void(0);" class="text-muted list-sort" data-sort="created">
+                                    Created At
+                                </a>
+                            </th>
+                            <th>
+                                <a href="javascript: void(0);" class="text-muted list-sort" data-sort="updated">
+                                    Updated At
+                                </a>
+                            </th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        {% if transactions %}
+                            {% for obj in transactions %}    
+                                <tr>
+                                    <td class="name">{{ obj.project.name }}</td>
+                                    <td class="key">{{ obj.get_source_type }}</td>
+                                    <td class="hourly_rate" data-created="hourly_rate">{{ obj.created_at }}</td>
+                                    <td class="created" data-created="created_at">{{ obj.created_at }}</td>
+                                    <td class="text-center">
+                                       <a href="{% url 'transaction' obj.pk %}"><svg viewBox="0 0 24 24" height="14" width="14" class="me-2" xmlns="http://www.w3.org/2000/svg"><path d="M12,5.251C7.969,5.183,3.8,8,1.179,10.885a1.663,1.663,0,0,0,0,2.226C3.743,15.935,7.9,18.817,12,18.748c4.1.069,8.258-2.813,10.824-5.637a1.663,1.663,0,0,0,0-2.226C20.2,8,16.031,5.183,12,5.251Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M15.75,12A3.75,3.75,0,1,1,12,8.249,3.749,3.749,0,0,1,15.75,12Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg></a>
+                                      <a href="{% url 'transaction_update' obj.pk %}"><svg viewBox="0 0 24 24" height="14" width="14" class="me-2" xmlns="http://www.w3.org/2000/svg"><path d="M12.712,16.386,9,16.916,9.53,13.2l9.546-9.546A2.25,2.25,0,1,1,22.258,6.84Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path><path d="M5.25,15h-3a1.5,1.5,0,0,0-1.5,1.5v3A1.5,1.5,0,0,0,2.25,21h19.5a1.5,1.5,0,0,0,1.5-1.5v-3a1.5,1.5,0,0,0-1.5-1.5h-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg></a>
+                                      <a href="{% url 'transaction_delete' obj.pk %}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="12" width="14" class="me-2"><g><line x1="1" y1="5" x2="23" y2="5" style="fill: none;stroke: currentColor;stroke-linecap: round;stroke-linejoin: round;stroke-width: 1.5"></line><path d="M14.25,1H9.75a1.5,1.5,0,0,0-1.5,1.5V5h7.5V2.5A1.5,1.5,0,0,0,14.25,1Z" style="fill: none;stroke: currentColor;stroke-linecap: round;stroke-linejoin: round;stroke-width: 1.5"></path><line x1="9.75" y1="17.75" x2="9.75" y2="10.25" style="fill: none;stroke: currentColor;stroke-linecap: round;stroke-linejoin: round;stroke-width: 1.5"></line><line x1="14.25" y1="17.75" x2="14.25" y2="10.25" style="fill: none;stroke: currentColor;stroke-linecap: round;stroke-linejoin: round;stroke-width: 1.5"></line><path d="M18.86,21.62A1.49,1.49,0,0,1,17.37,23H6.63a1.49,1.49,0,0,1-1.49-1.38L3.75,5h16.5Z" style="fill: none;stroke: currentColor;stroke-linecap: round;stroke-linejoin: round;stroke-width: 1.5px"></path></g></svg></a>
+                                  </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div> <!-- / .table-responsive -->
+            <div class="card-footer">
+                <!-- Pagination -->
+                <ul class="pagination justify-content-end list-pagination mb-0"></ul>
+            </div>
+        </div>
+    </div>
+</div> <!-- / .row -->
+{% endblock %}

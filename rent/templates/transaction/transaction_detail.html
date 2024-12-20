@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ transaction.project }}
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-baseline justify-content-between">
+    <!-- Title -->
+    <h1 class="h2"> {{ transaction.project }} </h1>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Transaction details</li>
+        </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-0">
+        <div class="card-body">
+          <div class="row justify-content-between">
+            <div class="col-md-12">
+              <div>
+                <h3>{{ transaction.project }}</h3>
+                <p class="mb-1"><b>Project description:</b></p>
+                <p>{{ transaction.project.description }}</p>
+              </div>
+            </div>
+          </div> <!-- / .row -->
+          <!-- Divider -->
+          <hr />
+          <div class="row justify-content-between">
+            <div class="col col-lg-auto fw-semibold mb-5">
+              <div class="row">
+                <div class="col-auto w-150px">
+                  <p class="mb-3 mb-md-5">
+                    <span class="text-secondary">Customer Name:</span>
+                  </p>
+                </div>
+
+                <div class="col-auto">
+                  <p class="mb-5">{{ transaction.project.customer }}</p>
+                </div>
+              </div> <!-- / .row -->
+
+              <div class="row">
+                <div class="col-auto w-150px">
+                  <p class="mb-3 mb-md-5">
+                    <span class="text-secondary">Start Date:</span>
+                  </p>
+                </div>
+
+                <div class="col-auto">
+                  <p class="mb-5">{{ transaction.project.start_date }}</p>
+                </div>
+              </div> <!-- / .row -->
+
+              <div class="row">
+                <div class="col-auto w-150px">
+                  <p class="mb-3 mb-md-5">
+                    <span class="text-secondary">End Date:</span>
+                  </p>
+                </div>
+
+                <div class="col-auto">
+                  <p class="mb-5">{{ transaction.project.finish_date }}</p>
+                </div>
+              </div> <!-- / .row -->
+
+              <div class="row">
+                <div class="col-auto w-150px">
+                  <p class="mb-3 mb-md-5">
+                    <span class="text-secondary">Square feet:</span>
+                  </p>
+                </div>
+
+                <div class="col-auto">
+                  <p class="mb-5">{{ transaction.project.square_feet }} feet</p>
+                </div>
+              </div> <!-- / .row -->
+
+              <div class="row">
+                <div class="col-auto w-150px">
+                  <p class="mb-3 mb-md-5">
+                    <span class="text-secondary">Project Type:</span>
+                  </p>
+                </div>
+
+                <div class="col-auto">
+                  <p class="mb-5">{{ transaction.project.project_type.name }}</p>
+                </div>
+              </div> <!-- / .row -->
+
+              <div class="row">
+                <div class="col-auto w-150px">
+                  <p class="mb-3 mb-md-5">
+                    <span class="text-secondary">Status:</span>
+                  </p>
+                </div>
+
+                <div class="col-auto">
+                  <p class="mb-5">{{ transaction.project.get_status }}</p>
+                </div>
+              </div> <!-- / .row -->
+            </div>
+
+            <div class="col col-lg-auto text-end">
+              <span class="text-secondary">Total expense (USD)</span>
+              <h3 class="display-2 mb-6">${{ total_expense }}</h3>
+            </div>
+          </div> <!-- / .row -->
+          <p class="mb-5"><b>Transactions</b></p>
+          <div class="row">
+            <div class="col">
+              <!-- Table -->
+              <div class="table-responsive">
+                <table class="table align-middle table-nowrap mb-0">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col" class="w-60px">Date</th>
+                      <th scope="col">Member</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Rate</th>
+                      <th>Amount</th>
+                      <th scope="col">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in transaction.profits.all %}
+                        <tr>
+                            <td>{{ obj.date }}</td>
+                            <td>{{ obj.worker }}</td>
+                            <td>{{obj.worker.get_worker_type}}</td>
+                            <td>{{ obj.quantity }}</td>
+                            <td>{{ obj.amount }}</td>
+                            <td>${{ obj.total_amount }}</td>
+                            <td>{% if obj.notes %} {{ obj.notes }} {% else %} Not Added Yet {% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div> <!-- / .table-responsive -->
+            </div>
+          </div> <!-- / .row -->
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

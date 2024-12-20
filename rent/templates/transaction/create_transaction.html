@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Add Transaction
+{% endblock %}
+
+{% block content %}
+<style>
+  .remove_btn {
+    width: fit-content;
+    height: fit-content;
+  }
+  input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+  }
+</style>
+<div class="d-flex align-items-baseline justify-content-between">
+    <!-- Title -->
+    <h1 class="h2">Create New Transaction</h1>
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Transaction</li>
+        </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-0">
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            {% if form.errors %}
+                {% include 'common/error_msg.html' %}
+            {% endif %}
+            {% include 'common/success_msg.html' %}
+            <div class="row mt-5">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    {% comment %} <div class="form-group mb-3">
+                        <label class="mb-2" for="project">Select Project</label>
+                        <select name="project" class="form-select" oninvalid="this.setCustomValidity('Please select project.')" oninput="this.setCustomValidity('')" id="project" autocomplete="off" data-select='{ "placeholder": "Select a project..."}' required>
+                            <option value="" disabled selected>Select a project</option>
+                            {% for project in projects %}
+                            <option value="{{ project.id }}">{{ project.name }}</option>
+                        {% endfor %}
+                        </select>
+                      </div> {% endcomment %}
+                    <label class="card-title mb-1">Transactions</label>
+                    <div style="margin-top: 15px;" id="formContainer">
+                        <div id="numberForm" class="row mb-5 row_content">
+                            <div class="col-md-7">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-gap: 10px;">
+                                    <div class="form-group">
+                                        <label class="mb-2" for="dateInput">Date</label>
+                                        <input type="date" name="date[]" class="form-control" id="dateInput" onkeydown="return false;"/>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label class="mb-2" for="project">Source Type</label>
+                                        <select name="source_type" class="form-select">
+                                            <option value="none">Select type</option>
+                                            <option value="1">Labor</option>
+                                            <option value="2">Vendor</option>
+                                        </select>
+                                    </div>
+                                    <div class="separate">
+                                        <div class="form-group labor_sec d-none">
+                                            <label class="mb-2" for="labor-select">Labor</label>
+                                            <select id="labor-select" name="worker[]" class="form-select">
+                                                <option value="" disabled selected>Select a Labor</option>
+                                                {% for labor in labors %}
+                                                    <option value="{{ labor.id }}" data-rate="{{ labor.hourly_rate }}">{{ labor.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group vendor_sec d-none">
+                                            <label class="mb-2" for="vendor">Vendor</label>
+                                            <select name="worker[]" class="form-select" id="vendor">
+                                                <option value="" disabled selected>Select a Vendor</option>
+                                                {% for vendor in vendors %}
+                                                    <option value="{{ vendor.id }}">{{ vendor.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="mb-2" for="quantity">Quantity</label>
+                                        <input type="number" name="quantity[]" step="0.01"" id="quantity" class="form-control quantity" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; grid-gap: 15px;">
+                                    <div class="form-group">
+                                        <label class="mb-2" for="hourly_rate_info"><span id="member_price"></span></label>
+                                        <input type="number" step="0.01" id="hourly_rate_info" name="amount[]" placeholder="0.00" class="form-control amount" required/>
+                                    </div>
+                                    <div>
+                                        <label for="total_prices" class="mb-2">Total Amount</label>
+                                        <input type="text" class="form-control totalPrice" id="total_prices" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <div class="form-group">
+                                    <textarea placeholder="Notes" class="form-control" name="notes[]" rows="1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                      <button onclick="addNewRow()" type="button" class="btn btn-primary btn-sm mt-3">Add More Transaction</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Create Transaction</button>
+            <a href="/project-detail/{{project_id}}" class="btn btn-secondary btn-sm">Back</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
