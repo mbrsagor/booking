@@ -1,6 +1,7 @@
 docker-build.sh
 Dockerfile*
-
+.vscode
+.idea
 README.md
 .git/
 .gitignore
@@ -10,3 +11,4 @@ example.env.toml
 help/
 nginx/
 docker-compose.yml
+
