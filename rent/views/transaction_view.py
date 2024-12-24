@@ -175,6 +175,48 @@ class TransactionUpdateView(View):
             return redirect("transaction_update", pk=pk)
 
 
+# Transaction update V2
+@method_decorator(login_required(login_url="/user/login"), name="dispatch")
+class ProfitUpdateNewView(SuccessMessageMixin, generic.UpdateView):
+    model = Profit
+    form_class = ProfitModelForm
+    success_message = "Profit updated successfully."
+    template_name = "transaction/update_transaction.html"
+
+    def form_valid(self, form):
+        # Get POST data
+        source_type = self.request.POST.get("source_type")
+        worker_id = self.request.POST.get("worker")
+
+        # Validate the source type and worker ID
+        if source_type and worker_id:
+            try:
+                # Ensure source_type is an integer
+                source_type = int(source_type)
+                # Query for Worker with specific worker_type
+                worker = Worker.objects.get(id=worker_id, worker_type=source_type)
+                form.instance.worker = worker  # Assign the worker to the form
+            except Worker.DoesNotExist:
+                form.add_error(None, "Invalid worker for the selected source type.")
+                return self.form_invalid(form)
+            except Exception as e:
+                form.add_error(None, "An unexpected error occurred.")
+                return self.form_invalid(form)
+        else:
+            form.add_error(None, "Source type and worker must be selected.")
+            return self.form_invalid(form)
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("transaction_update", kwargs={"pk": self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["labors"] = Worker.objects.filter(worker_type=1, status=True)
+        context["vendors"] = Worker.objects.filter(worker_type=2, status=True)
+        return context
+
+
 @method_decorator(login_required(login_url="/user/login"), name="dispatch")
 class TransactionDeleteView(SuccessMessageMixin, generic.DeleteView):
     model = Transaction
