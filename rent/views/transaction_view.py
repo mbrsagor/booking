@@ -216,10 +216,3 @@ class ProfitUpdateNewView(SuccessMessageMixin, generic.UpdateView):
         context["vendors"] = Worker.objects.filter(worker_type=2, status=True)
         return context
 
-
-@method_decorator(login_required(login_url="/user/login"), name="dispatch")
-class TransactionDeleteView(SuccessMessageMixin, generic.DeleteView):
-    model = Transaction
-    success_url = "/transactions"
-    success_message = "Transaction deleted successfully."
-    template_name = "common/del_confirm.html"
