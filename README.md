@@ -1,11 +1,11 @@
 # Booking
-The application basically, is an online booking system that users can be booking any kind of room, hotel, etc.
+The application basically, is an online booking system that users can be booking room, hotel, etc.
 
 #### Instruction to run the application in your local dev server:
 
 ###### Prerequisites
 - Python 3.8.5
-- Psql 14.0
+- PostgreSql 14.0
 
 > The following steps will walk you thru installation on a Mac. I think linux should be similar. It's also possible to develop on a Windows machine, but I have not documented the steps. If you've developed django apps on Windows, you should have little problem getting up and running.
 
